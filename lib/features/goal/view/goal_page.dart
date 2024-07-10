@@ -74,6 +74,7 @@ class GoalPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingButton(
+        heroTag: 'goal_page',
         floatingButton: (context, isExpanded) => AnimatedRotation(
           turns: isExpanded ? -1 / 8 : 0,
           duration: const Duration(milliseconds: 200),

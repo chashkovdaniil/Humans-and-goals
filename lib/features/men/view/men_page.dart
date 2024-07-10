@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/features/man/view/man_new_dialog.dart';
 
+import '../features/new_man/man_new_dialog.dart';
 import '../men.dart';
 
 class MenPage extends StatelessWidget {
@@ -16,6 +16,7 @@ class MenPage extends StatelessWidget {
       ),
       body: const MenListComponent(),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'men_page',
         label: Text('Add man'),
         icon: Icon(Icons.add),
         onPressed: () {

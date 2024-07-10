@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class FloatingButton extends StatefulWidget {
+  final String heroTag;
   final List<Widget> actions;
   final Widget Function(BuildContext context, bool isExpanded) floatingButton;
   final VoidCallback onPressed;
@@ -12,6 +13,7 @@ class FloatingButton extends StatefulWidget {
     required this.actions,
     required this.floatingButton,
     required this.onPressed,
+    required this.heroTag,
   });
 
   @override
@@ -36,6 +38,7 @@ class _FloatingButtonState extends State<FloatingButton> {
             ),
           ),
         FloatingActionButton(
+          heroTag: widget.heroTag,
           onPressed: () {
             setState(() {
               isExpanded = !isExpanded;

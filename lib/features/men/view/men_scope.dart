@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:goals_tracker/features/men/domain/data/man_repository_impl.dart';
+import 'package:goals_tracker/features/men/domain/interactor/man_interactor.dart';
 import 'package:goals_tracker/features/men/view/men_page_view_model.dart';
+
+import '../features/new_man/man_new_dialog_view_model.dart';
 
 class MenScope extends StatelessWidget {
   final Widget child;
@@ -13,10 +17,34 @@ class MenScope extends StatelessWidget {
     return _MenScopeInherited.of(context, listen: listen).menPageViewModel;
   }
 
+  static ManNewDialogViewModel manNewDialogViewModelOf(
+    BuildContext context, {
+    bool listen = true,
+  }) {
+    return _MenScopeInherited.of(context, listen: listen).manNewDialogViewModel;
+  }
+
+  static ManInteractor manInteractorOf(
+    BuildContext context, {
+    bool listen = true,
+  }) {
+    return _MenScopeInherited.of(context, listen: listen).manInteractor;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final manRepository = ManRepositoryImpl();
+    final manInteractor = ManInteractor(manRepository: manRepository);
+    final menPageViewModel = MenPageViewModel(manInteractor);
+    menPageViewModel.init();
+
     return _MenScopeInherited(
-      menPageViewModel: MenPageViewModel(),
+      menPageViewModel: menPageViewModel,
+      manNewDialogViewModel: ManNewDialogViewModel(
+        manInteractor,
+        menPageViewModel,
+      ),
+      manInteractor: manInteractor,
       child: child,
     );
   }
@@ -24,11 +52,14 @@ class MenScope extends StatelessWidget {
 
 class _MenScopeInherited extends InheritedWidget {
   final MenPageViewModel menPageViewModel;
+  final ManNewDialogViewModel manNewDialogViewModel;
+  final ManInteractor manInteractor;
 
   const _MenScopeInherited({
-    super.key,
     required Widget child,
     required this.menPageViewModel,
+    required this.manNewDialogViewModel,
+    required this.manInteractor,
   }) : super(child: child);
 
   static _MenScopeInherited of(

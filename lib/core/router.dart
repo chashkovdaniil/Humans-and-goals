@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/features/goal/view/goal_edit_page.dart';
 import 'package:goals_tracker/features/goal/view/goal_new_dialog.dart';
 import 'package:goals_tracker/features/goal/view/goal_page.dart';
 import 'package:goals_tracker/features/main/view/main_page.dart';
 
-import '../features/man/view/man_edit_page.dart';
-import '../features/man/view/man_new_dialog.dart';
-import '../features/man/view/man_page.dart';
+import '../features/men/features/man/view/man_edit_page.dart';
+import '../features/men/features/man/view/man_page.dart';
+import '../features/men/features/new_man/man_new_dialog.dart';
 import 'widgets/dialog_page.dart';
 
 final router = GoRouter(

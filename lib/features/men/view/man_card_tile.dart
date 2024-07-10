@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../man/view/man_page.dart';
 import '../domain/models/man_model.dart';
+import '../features/man/view/man_page.dart';
 import 'men_scope.dart';
 
 class ManCardTile extends StatelessWidget {
@@ -14,17 +14,7 @@ class ManCardTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Hero(
-          tag: 'man_${man.id}',
-          flightShuttleBuilder: (_, __, ___, ____, _____) {
-            return Material(
-              child: Text(
-                'Man #${man.id}',
-              ),
-            );
-          },
-          child: Text('man #${man.id}'),
-        ),
+        title: Text('man #${man.id}'),
         subtitle: Text('Electric'),
         trailing: IconButton(
           icon: Icon(Icons.close),

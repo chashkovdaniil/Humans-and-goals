@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:goals_tracker/features/men/men.dart';
 
 class ManNewDialog extends StatefulWidget {
   static const routeName = 'people_new';
@@ -41,23 +42,24 @@ class _ManNewDialogState extends State<ManNewDialog> {
         ),
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0*2,8.0*2,8.0*2,0),
+            padding: const EdgeInsets.fromLTRB(8.0 * 2, 8.0 * 2, 8.0 * 2, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
                   child: Text('Close'),
-                  onPressed: () {
-                    context.pop();
-                  },
+                  onPressed: () => context.pop(),
                 ),
                 TextButton(
                   child: Text('Save'),
                   onPressed: () {
                     final isValid = _formKey.currentState?.validate() ?? false;
 
-                    if(isValid) {
-                      print('Save');
+                    if (isValid) {
+                      MenScope.manNewDialogViewModelOf(context).onNewManTap(
+                        ManModel(id: _fullnameEditingController.text),
+                      );
+                      context.pop();
                     }
                   },
                 ),
