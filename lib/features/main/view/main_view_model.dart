@@ -35,22 +35,32 @@ final class TabsViewModelImpl extends ValueNotifier<MainPageTabs>
   void openTabByIndex(int index) {
     value = MainPageTabs.values[index];
   }
+
+  @override
+  void addListener(VoidCallback listener) {
+    super.addListener(listener);
+  }
 }
 
 class _TabsScope extends InheritedWidget {
-  final _viewModel = TabsViewModelImpl();
+  final TabsViewModel viewModel;
 
   _TabsScope({
     super.key,
+    required this.viewModel,
     required super.child,
   });
 
-  static _TabsScope of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_TabsScope>()!;
+  static _TabsScope of(BuildContext context, {bool listen = true}) {
+    if (listen) {
+      return context.dependOnInheritedWidgetOfExactType<_TabsScope>()!;
+    }
+    return context.getInheritedWidgetOfExactType<_TabsScope>()!;
+  }
 
   @override
   bool updateShouldNotify(covariant _TabsScope oldWidget) {
-    return oldWidget._viewModel != _viewModel;
+    return oldWidget.viewModel != viewModel;
   }
 }
 
@@ -62,25 +72,29 @@ class TabsProvider extends StatefulWidget {
   @override
   State<TabsProvider> createState() => _TabsProvider();
 
-  static TabsViewModel of(BuildContext context) =>
-      _TabsScope.of(context)._viewModel;
+  static TabsViewModel of(BuildContext context, {bool listen = true}) =>
+      _TabsScope.of(context, listen: listen).viewModel;
 }
 
 class _TabsProvider extends State<TabsProvider> {
+  late final TabsViewModelImpl viewModel;
+
   @override
   void initState() {
+    viewModel = TabsViewModelImpl();
     super.initState();
   }
 
   @override
   void dispose() {
-    _TabsScope.of(context)._viewModel.dispose();
+    viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return _TabsScope(
+      viewModel: viewModel,
       child: widget.child,
     );
   }
@@ -94,7 +108,7 @@ class TabsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = _TabsScope.of(context)._viewModel;
+    final viewModel = _TabsScope.of(context).viewModel;
 
     return ValueListenableBuilder(
       valueListenable: viewModel,

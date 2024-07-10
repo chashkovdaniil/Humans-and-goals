@@ -5,17 +5,25 @@ import 'package:goals_tracker/features/goal/view/goal_page.dart';
 import '../domain/goal_model.dart';
 import '../goal.dart';
 
-class GoalsListComponent extends StatelessWidget {
+class GoalsListComponent extends StatefulWidget {
   final List<GoalModel> goalsList;
 
   const GoalsListComponent({super.key, required this.goalsList});
 
   @override
+  State<GoalsListComponent> createState() => _GoalsListComponentState();
+}
+
+class _GoalsListComponentState extends State<GoalsListComponent>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return ListView(
       padding: const EdgeInsets.all(8.0),
       children: [
-        for (final goal in goalsList)
+        for (final goal in widget.goalsList)
           Card(
             child: ListTile(
               title: Hero(
@@ -44,4 +52,7 @@ class GoalsListComponent extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

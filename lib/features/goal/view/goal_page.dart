@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/features/goal/domain/goal_model.dart';
 import 'package:goals_tracker/features/goal/view/goal_edit_page.dart';
 
 import '../../../core/widgets/widgets.dart';
-import '../../people/people.dart';
+import '../../men/men.dart';
 
 class GoalPage extends StatelessWidget {
   static const routePath = 'goal/:id';
@@ -71,14 +68,7 @@ class GoalPage extends StatelessWidget {
                   ),
             ),
             Expanded(
-              child: PeopleListComponent(
-                peopleList: List.generate(
-                  20,
-                  (id) => ManModel(
-                    id: id.toString(),
-                  ),
-                ),
-              ),
+              child: MenListComponent(),
             ),
           ],
         ),

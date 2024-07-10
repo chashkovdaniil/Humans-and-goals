@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/widgets.dart';
 import '../../goal/goal.dart';
-import '../../people/people.dart';
 import 'man_edit_page.dart';
 
 class ManPage extends StatelessWidget {
