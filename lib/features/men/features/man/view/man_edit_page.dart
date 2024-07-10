@@ -8,6 +8,7 @@ import 'man_builder.dart';
 class ManEditPage extends StatelessWidget {
   static const routeName = 'man_edit';
   static const routePath = 'edit';
+
   const ManEditPage({super.key});
 
   @override
@@ -86,6 +87,11 @@ class _ManEditingViewState extends State<_ManEditingView> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.save),
+        label: const Text('Save'),
+        onPressed: () {},
       ),
     );
   }

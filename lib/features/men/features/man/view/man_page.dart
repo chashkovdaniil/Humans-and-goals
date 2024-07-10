@@ -91,7 +91,13 @@ class _ManViewingPage extends StatelessWidget {
         ),
         actions: [
           AnimatedDeleteButton(
-            deleteCallback: () async {},
+            deleteCallback: () async {
+              MenScope.menPageViewModelOf(
+                context,
+                listen: false,
+              ).onRemoveManTap(manModel);
+              context.pop();
+            },
           ),
           ElevatedButton(
             child: const Text('Change info'),
