@@ -15,13 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ManNewDialogState {}
+mixin _$ManNewDialogState {
+  String get fullname => throw _privateConstructorUsedError;
+  String get uuid => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ManNewDialogStateCopyWith<ManNewDialogState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $ManNewDialogStateCopyWith<$Res> {
   factory $ManNewDialogStateCopyWith(
           ManNewDialogState value, $Res Function(ManNewDialogState) then) =
       _$ManNewDialogStateCopyWithImpl<$Res, ManNewDialogState>;
+  @useResult
+  $Res call({String fullname, String uuid});
 }
 
 /// @nodoc
@@ -33,13 +42,35 @@ class _$ManNewDialogStateCopyWithImpl<$Res, $Val extends ManNewDialogState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fullname = null,
+    Object? uuid = null,
+  }) {
+    return _then(_value.copyWith(
+      fullname: null == fullname
+          ? _value.fullname
+          : fullname // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ManNewDialogStateImplCopyWith<$Res> {
+abstract class _$$ManNewDialogStateImplCopyWith<$Res>
+    implements $ManNewDialogStateCopyWith<$Res> {
   factory _$$ManNewDialogStateImplCopyWith(_$ManNewDialogStateImpl value,
           $Res Function(_$ManNewDialogStateImpl) then) =
       __$$ManNewDialogStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String fullname, String uuid});
 }
 
 /// @nodoc
@@ -49,28 +80,73 @@ class __$$ManNewDialogStateImplCopyWithImpl<$Res>
   __$$ManNewDialogStateImplCopyWithImpl(_$ManNewDialogStateImpl _value,
       $Res Function(_$ManNewDialogStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fullname = null,
+    Object? uuid = null,
+  }) {
+    return _then(_$ManNewDialogStateImpl(
+      fullname: null == fullname
+          ? _value.fullname
+          : fullname // ignore: cast_nullable_to_non_nullable
+              as String,
+      uuid: null == uuid
+          ? _value.uuid
+          : uuid // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ManNewDialogStateImpl implements _ManNewDialogState {
-  const _$ManNewDialogStateImpl();
+  const _$ManNewDialogStateImpl({required this.fullname, required this.uuid});
+
+  @override
+  final String fullname;
+  @override
+  final String uuid;
 
   @override
   String toString() {
-    return 'ManNewDialogState()';
+    return 'ManNewDialogState(fullname: $fullname, uuid: $uuid)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ManNewDialogStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ManNewDialogStateImpl &&
+            (identical(other.fullname, fullname) ||
+                other.fullname == fullname) &&
+            (identical(other.uuid, uuid) || other.uuid == uuid));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, fullname, uuid);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ManNewDialogStateImplCopyWith<_$ManNewDialogStateImpl> get copyWith =>
+      __$$ManNewDialogStateImplCopyWithImpl<_$ManNewDialogStateImpl>(
+          this, _$identity);
 }
 
 abstract class _ManNewDialogState implements ManNewDialogState {
-  const factory _ManNewDialogState() = _$ManNewDialogStateImpl;
+  const factory _ManNewDialogState(
+      {required final String fullname,
+      required final String uuid}) = _$ManNewDialogStateImpl;
+
+  @override
+  String get fullname;
+  @override
+  String get uuid;
+  @override
+  @JsonKey(ignore: true)
+  _$$ManNewDialogStateImplCopyWith<_$ManNewDialogStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

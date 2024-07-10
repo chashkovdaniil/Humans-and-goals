@@ -1,18 +1,18 @@
-import 'package:goals_tracker/features/men/domain/models/man_model.dart';
+import '../models/man_model.dart';
 
 abstract interface class ManRepository {
   /// Позволяет получить человека по идентификатору
-  Future<ManModel> getMan(String id);
+  Future<ManModel> getMan(final String id);
 
   /// Добавляет человека
-  Future<void> addMan(ManModel man);
+  Future<void> addMan(final ManModel man);
 
   /// Сохраняет человека
-  Future<void> saveMan(ManModel man);
+  Future<void> saveMan(final ManModel man);
 
   /// Удаляет человека
-  Future<void> removeMan(ManModel man);
+  Future<void> removeMan(final ManModel man);
 
   /// Позволяет получить список людей
-  Future<List<ManModel>> getMen(int count, int page);
+  Future<List<ManModel>> getMen(final int count, final int page);
 }

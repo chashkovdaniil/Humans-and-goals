@@ -24,7 +24,7 @@ class _FloatingButtonState extends State<FloatingButton> {
   var isExpanded = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,

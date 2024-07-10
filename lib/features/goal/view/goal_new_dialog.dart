@@ -19,8 +19,7 @@ class _GoalNewDialogState extends State<GoalNewDialog> {
   @override
   void initState() {
     _goalTitleEditingController = TextEditingController();
-    _goalDescriptionEditingController =
-        TextEditingController();
+    _goalDescriptionEditingController = TextEditingController();
     _formKey = GlobalKey<FormState>(debugLabel: 'goal_new_key');
     super.initState();
   }
@@ -33,44 +32,44 @@ class _GoalNewDialogState extends State<GoalNewDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Form(
       key: _formKey,
       child: SimpleDialog(
         title: TextFormField(
           controller: _goalTitleEditingController,
-          decoration: InputDecoration(
-            hintText: 'Goal\s name',
+          decoration: const InputDecoration(
+            hintText: 'Goal\'s name',
           ),
         ),
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0*2),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0 * 2),
             child: TextFormField(
               controller: _goalDescriptionEditingController,
-              decoration: InputDecoration(
-                hintText: 'Goal\s name',
+              decoration: const InputDecoration(
+                hintText: 'Goal\'s name',
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(8.0*2,8.0*2,8.0*2,0),
+            padding: const EdgeInsets.fromLTRB(8.0 * 2, 8.0 * 2, 8.0 * 2, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: Text('Close'),
+                  child: const Text('Close'),
                   onPressed: () {
                     context.pop();
                   },
                 ),
                 TextButton(
-                  child: Text('Save'),
+                  child: const Text('Save'),
                   onPressed: () {
                     final isValid = _formKey.currentState?.validate() ?? false;
 
-                    if(isValid) {
-                      print('Save');
+                    if (isValid) {
+                      // print('Save');
                     }
                   },
                 ),

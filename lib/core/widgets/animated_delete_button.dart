@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class AnimatedDeleteButton extends StatefulWidget {
@@ -14,23 +13,24 @@ class _AnimatedDeleteButtonState extends State<AnimatedDeleteButton> {
   var isLoading = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return ElevatedButton(
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
-        child: isLoading ? const SizedBox.square(
-          dimension: 8.0,
-          child: CircularProgressIndicator(
-            color: Colors.red,
-          ),
-        ) : Text(
-          'Delete',
-          style: Theme
-              .of(context)
-              .textTheme
-              .labelMedium
-              ?.copyWith(color: Colors.red),
-        ),
+        child: isLoading
+            ? const SizedBox.square(
+                dimension: 8.0,
+                child: CircularProgressIndicator(
+                  color: Colors.red,
+                ),
+              )
+            : Text(
+                'Delete',
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: Colors.red),
+              ),
       ),
       onPressed: () async {
         setState(() {

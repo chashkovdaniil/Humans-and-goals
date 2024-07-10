@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/features/men/domain/data/man_repository_impl.dart';
-import 'package:goals_tracker/features/men/domain/interactor/man_interactor.dart';
-import 'package:goals_tracker/features/men/view/men_page_view_model.dart';
 
+import '../domain/data/man_repository_impl.dart';
+import '../domain/interactor/man_interactor.dart';
 import '../features/new_man/man_new_dialog_view_model.dart';
+import 'men_page_view_model.dart';
 
 class MenScope extends StatelessWidget {
   final Widget child;
@@ -11,28 +11,28 @@ class MenScope extends StatelessWidget {
   const MenScope({super.key, required this.child});
 
   static MenPageViewModel menPageViewModelOf(
-    BuildContext context, {
-    bool listen = true,
+    final BuildContext context, {
+    final bool listen = true,
   }) {
     return _MenScopeInherited.of(context, listen: listen).menPageViewModel;
   }
 
   static ManNewDialogViewModel manNewDialogViewModelOf(
-    BuildContext context, {
-    bool listen = true,
+    final BuildContext context, {
+    final bool listen = true,
   }) {
     return _MenScopeInherited.of(context, listen: listen).manNewDialogViewModel;
   }
 
   static ManInteractor manInteractorOf(
-    BuildContext context, {
-    bool listen = true,
+    final BuildContext context, {
+    final bool listen = true,
   }) {
     return _MenScopeInherited.of(context, listen: listen).manInteractor;
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final manRepository = ManRepositoryImpl();
     final manInteractor = ManInteractor(manRepository: manRepository);
     final menPageViewModel = MenPageViewModel(manInteractor);
@@ -41,7 +41,6 @@ class MenScope extends StatelessWidget {
     return _MenScopeInherited(
       menPageViewModel: menPageViewModel,
       manNewDialogViewModel: ManNewDialogViewModel(
-        manInteractor,
         menPageViewModel,
       ),
       manInteractor: manInteractor,
@@ -56,15 +55,15 @@ class _MenScopeInherited extends InheritedWidget {
   final ManInteractor manInteractor;
 
   const _MenScopeInherited({
-    required Widget child,
+    required super.child,
     required this.menPageViewModel,
     required this.manNewDialogViewModel,
     required this.manInteractor,
-  }) : super(child: child);
+  });
 
   static _MenScopeInherited of(
-    BuildContext context, {
-    bool listen = true,
+    final BuildContext context, {
+    final bool listen = true,
   }) {
     if (listen) {
       final result =
@@ -78,7 +77,7 @@ class _MenScopeInherited extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(_MenScopeInherited old) {
+  bool updateShouldNotify(final _MenScopeInherited old) {
     return old.menPageViewModel != menPageViewModel;
   }
 }

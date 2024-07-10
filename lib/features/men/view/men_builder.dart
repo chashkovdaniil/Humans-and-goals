@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/features/men/domain/models/man_model.dart';
-import 'package:goals_tracker/features/men/view/men_scope.dart';
+
+import '../domain/models/man_model.dart';
+import 'men_scope.dart';
 
 class MenBuilder extends StatelessWidget {
   final Widget Function(BuildContext, List<ManModel>) builder;
@@ -8,13 +9,13 @@ class MenBuilder extends StatelessWidget {
   const MenBuilder({super.key, required this.builder});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final menPageViewModel = MenScope.menPageViewModelOf(context);
 
     return StreamBuilder<List<ManModel>>(
       initialData: menPageViewModel.men,
-      stream: menPageViewModel.stream.map((s) => s.men),
-      builder: (context, snapshot) {
+      stream: menPageViewModel.stream.map((final s) => s.men),
+      builder: (final context, final snapshot) {
         return builder(context, snapshot.requireData);
       },
     );

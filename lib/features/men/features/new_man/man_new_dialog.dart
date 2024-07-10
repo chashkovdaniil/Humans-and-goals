@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/features/men/men.dart';
+
+import '../../men.dart';
 
 class ManNewDialog extends StatefulWidget {
   static const routeName = 'people_new';
@@ -30,14 +31,28 @@ class _ManNewDialogState extends State<ManNewDialog> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Form(
       key: _formKey,
       child: SimpleDialog(
         title: TextFormField(
           controller: _fullnameEditingController,
-          decoration: InputDecoration(
+          onChanged: (final fullname) {
+            final manNewDialogViewModel = MenScope.manNewDialogViewModelOf(
+              context,
+              listen: false,
+            );
+            manNewDialogViewModel.onChangeFullname(fullname);
+          },
+          validator: (final text) {
+            if (text?.isEmpty ?? true) {
+              return 'Fill field';
+            }
+            return null;
+          },
+          decoration: const InputDecoration(
             hintText: 'Fullname',
+            errorText: 'Fill field',
           ),
         ),
         children: [
@@ -47,18 +62,16 @@ class _ManNewDialogState extends State<ManNewDialog> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  child: Text('Close'),
+                  child: const Text('Close'),
                   onPressed: () => context.pop(),
                 ),
                 TextButton(
-                  child: Text('Save'),
+                  child: const Text('Save'),
                   onPressed: () {
                     final isValid = _formKey.currentState?.validate() ?? false;
 
                     if (isValid) {
-                      MenScope.manNewDialogViewModelOf(context).onNewManTap(
-                        ManModel(id: _fullnameEditingController.text),
-                      );
+                      MenScope.manNewDialogViewModelOf(context).onNewManTap();
                       context.pop();
                     }
                   },

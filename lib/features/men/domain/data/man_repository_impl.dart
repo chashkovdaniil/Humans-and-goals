@@ -1,32 +1,39 @@
-import 'package:goals_tracker/features/men/domain/data/man_repository.dart';
-import 'package:goals_tracker/features/men/domain/models/man_model.dart';
+import '../models/man_model.dart';
+import 'man_repository.dart';
 
 class ManRepositoryImpl implements ManRepository {
-  final list = <ManModel>[ManModel(id: '0')];
+  final list = <ManModel>[
+    const ManModel(
+      id: '0',
+      fullname: 'Empty',
+      description: 'as',
+      goals: [],
+    )
+  ];
 
   @override
-  Future<void> addMan(ManModel man) async {
+  Future<void> addMan(final ManModel man) async {
     list.add(man);
   }
 
   @override
-  Future<void> removeMan(ManModel man) async {
-    list.removeWhere((m) => m.id == man.id);
+  Future<void> removeMan(final ManModel man) async {
+    list.removeWhere((final m) => m.id == man.id);
   }
 
   @override
-  Future<void> saveMan(ManModel man) async {
-    final index = list.indexWhere((m) => m.id == man.id);
+  Future<void> saveMan(final ManModel man) async {
+    final index = list.indexWhere((final m) => m.id == man.id);
     list.replaceRange(index, index + 1, [man]);
   }
 
   @override
-  Future<ManModel> getMan(String id) async {
-    return list.firstWhere((m) => m.id == id);
+  Future<ManModel> getMan(final String id) async {
+    return list.firstWhere((final m) => m.id == id);
   }
 
   @override
-  Future<List<ManModel>> getMen(int count, int page) async {
+  Future<List<ManModel>> getMen(final int count, final int page) async {
     return list;
   }
 }

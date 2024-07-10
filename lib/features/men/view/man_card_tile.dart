@@ -11,13 +11,13 @@ class ManCardTile extends StatelessWidget {
   const ManCardTile({super.key, required this.man});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('man #${man.id}'),
-        subtitle: Text('Electric'),
+        title: Text(man.fullname),
+        subtitle: const Text('Electric'),
         trailing: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
             MenScope.menPageViewModelOf(
               context,
@@ -26,9 +26,11 @@ class ManCardTile extends StatelessWidget {
           },
         ),
         onTap: () {
-          context.goNamed(ManPage.routeName, pathParameters: {
-            'id': man.id,
-          });
+          context.goNamed(
+            ManPage.routeName,
+            pathParameters: {'id': man.id},
+            extra: man,
+          );
         },
       ),
     );

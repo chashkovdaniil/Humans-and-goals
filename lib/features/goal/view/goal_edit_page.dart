@@ -26,9 +26,8 @@ class _GoalEditPageState extends State<GoalEditPage> {
     super.dispose();
   }
 
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final id = GoRouterState.of(context).pathParameters['id'];
     return Scaffold(
       appBar: AppBar(

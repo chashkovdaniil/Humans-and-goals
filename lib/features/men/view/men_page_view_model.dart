@@ -1,4 +1,4 @@
-import 'dart:math' as Math;
+import 'dart:math' as math;
 
 import 'package:state_notifier/state_notifier.dart';
 
@@ -11,9 +11,7 @@ class MenPageViewModel extends StateNotifier<MenPageState> {
 
   MenPageViewModel(
     this._manInteractor,
-  ) : super(
-          const MenPageState(men: const []),
-        );
+  ) : super(const MenPageState(men: []));
 
   List<ManModel> get men => state.men;
 
@@ -29,20 +27,26 @@ class MenPageViewModel extends StateNotifier<MenPageState> {
       ...state.men,
       ...List.generate(
         5,
-        (index) => ManModel(
-          id: ((index + Math.Random().nextDouble()) *
-                  Math.Random().nextInt(state.men.length))
+        (final index) => ManModel(
+          id: ((index + math.Random().nextDouble()) *
+                  math.Random().nextInt(state.men.length))
               .toString(),
+          fullname: 'ff',
+          description: '',
+          goals: [],
         ),
       ),
     ]);
   }
 
-  Future<void> onRemoveManTap(ManModel man) async {
+  Future<void> onRemoveManTap(final ManModel man) async {
     _manInteractor.removeMan(man);
+    final men = await _manInteractor.getMen(15, 0);
+    state = state.copyWith(men: men);
   }
 
-  Future<void> onNewMan() async {
+  Future<void> onNewMan(final ManModel man) async {
+    await _manInteractor.addMan(man);
     final men = await _manInteractor.getMen(15, 0);
     state = state.copyWith(men: men);
   }

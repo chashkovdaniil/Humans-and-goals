@@ -15,14 +15,15 @@ class DIContainerInherited extends InheritedWidget {
     required super.child,
   });
 
-  static DIContainerInherited of(BuildContext context) {
-    final DIContainerInherited? result = context.dependOnInheritedWidgetOfExactType<DIContainerInherited>();
+  static DIContainerInherited of(final BuildContext context) {
+    final DIContainerInherited? result =
+        context.dependOnInheritedWidgetOfExactType<DIContainerInherited>();
     assert(result != null, 'No DIContainerInherited found in context');
     return result!;
   }
 
   @override
-  bool updateShouldNotify(DIContainerInherited oldWidget) {
+  bool updateShouldNotify(final DIContainerInherited oldWidget) {
     return oldWidget.tabsViewModel != tabsViewModel;
   }
 }

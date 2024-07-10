@@ -7,28 +7,28 @@ class ManInteractor {
   final ManRepository _manRepository;
 
   ManInteractor({
-    required ManRepository manRepository,
+    required final ManRepository manRepository,
   }) : _manRepository = manRepository;
 
-  Future<List<ManModel>> getMen(int count, int page) async {
+  Future<List<ManModel>> getMen(final int count, final int page) async {
     return await _manRepository.getMen(count, page);
   }
 
-  Future<ManModel> getMan(String id) async {
+  Future<ManModel> getMan(final String id) async {
     return await _manRepository.getMan(id);
   }
 
-  Future<void> addMan(ManModel man) async {
+  Future<void> addMan(final ManModel man) async {
     // Тут добавить различные проверки
     _manRepository.addMan(man);
   }
 
-  Future<void> saveMan(ManModel man) async {
+  Future<void> saveMan(final ManModel man) async {
     // Тут добавить различные проверки
     _manRepository.saveMan(man);
   }
 
-  Future<void> removeMan(ManModel man) async {
+  Future<void> removeMan(final ManModel man) async {
     // Тут добавить различные проверки
     _manRepository.removeMan(man);
   }

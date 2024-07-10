@@ -8,17 +8,17 @@ class MenPage extends StatelessWidget {
   const MenPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('People'),
+        title: const Text('People'),
       ),
       body: const MenListComponent(),
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'men_page',
-        label: Text('Add man'),
-        icon: Icon(Icons.add),
+        label: const Text('Add man'),
+        icon: const Icon(Icons.add),
         onPressed: () {
           context.goNamed(ManNewDialog.routeName);
         },

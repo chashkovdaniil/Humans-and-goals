@@ -17,13 +17,13 @@ class ManBuilder extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final manInteractor = MenScope.manInteractorOf(context);
     final onLoading = this.onLoading?.call(context) ?? const SizedBox.shrink();
 
     return FutureBuilder(
       future: manInteractor.getMan(id),
-      builder: (context, snapshot) {
+      builder: (final context, final snapshot) {
         if (snapshot.hasError) {
           return onError?.call(context, snapshot.error) ?? onLoading;
         }

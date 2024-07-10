@@ -11,7 +11,7 @@ class AnimatedFloatingUpButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AnimatedSlide(
       offset: isExpanded ? const Offset(0, -0.5) : const Offset(0.25, 1),
       duration: const Duration(milliseconds: 200),

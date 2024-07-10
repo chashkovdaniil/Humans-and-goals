@@ -11,7 +11,7 @@ abstract interface class TabsViewModel
 
   void openPeopleTab();
 
-  void openTabByIndex(int index);
+  void openTabByIndex(final int index);
 }
 
 final class TabsViewModelImpl extends ValueNotifier<MainPageTabs>
@@ -32,26 +32,20 @@ final class TabsViewModelImpl extends ValueNotifier<MainPageTabs>
   }
 
   @override
-  void openTabByIndex(int index) {
+  void openTabByIndex(final int index) {
     value = MainPageTabs.values[index];
-  }
-
-  @override
-  void addListener(VoidCallback listener) {
-    super.addListener(listener);
   }
 }
 
 class _TabsScope extends InheritedWidget {
   final TabsViewModel viewModel;
 
-  _TabsScope({
-    super.key,
+  const _TabsScope({
     required this.viewModel,
     required super.child,
   });
 
-  static _TabsScope of(BuildContext context, {bool listen = true}) {
+  static _TabsScope of(final BuildContext context, {final bool listen = true}) {
     if (listen) {
       return context.dependOnInheritedWidgetOfExactType<_TabsScope>()!;
     }
@@ -59,7 +53,7 @@ class _TabsScope extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant _TabsScope oldWidget) {
+  bool updateShouldNotify(covariant final _TabsScope oldWidget) {
     return oldWidget.viewModel != viewModel;
   }
 }
@@ -72,7 +66,8 @@ class TabsProvider extends StatefulWidget {
   @override
   State<TabsProvider> createState() => _TabsProvider();
 
-  static TabsViewModel of(BuildContext context, {bool listen = true}) =>
+  static TabsViewModel of(final BuildContext context,
+          {final bool listen = true}) =>
       _TabsScope.of(context, listen: listen).viewModel;
 }
 
@@ -92,7 +87,7 @@ class _TabsProvider extends State<TabsProvider> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return _TabsScope(
       viewModel: viewModel,
       child: widget.child,
@@ -107,12 +102,12 @@ class TabsBuilder extends StatelessWidget {
   const TabsBuilder({super.key, required this.builder, this.child});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final viewModel = _TabsScope.of(context).viewModel;
 
     return ValueListenableBuilder(
       valueListenable: viewModel,
-      builder: (context, tab, child) => builder(
+      builder: (final context, final tab, final child) => builder(
         context,
         viewModel.currentTab,
         child,

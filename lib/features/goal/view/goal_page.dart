@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/features/goal/view/goal_edit_page.dart';
 
 import '../../../core/widgets/widgets.dart';
 import '../../men/men.dart';
+import 'goal_edit_page.dart';
 
 class GoalPage extends StatelessWidget {
   static const routePath = 'goal/:id';
@@ -12,7 +12,7 @@ class GoalPage extends StatelessWidget {
   const GoalPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final id = GoRouterState.of(context).pathParameters['id'];
     final canPop = context.canPop();
 
@@ -34,7 +34,8 @@ class GoalPage extends StatelessWidget {
               ),
         title: Hero(
           tag: 'goal_title_$id',
-          flightShuttleBuilder: (_, __, ___, ____, _____) {
+          flightShuttleBuilder:
+              (final _, final __, final ___, final ____, final _____) {
             return Material(
               child: Text(
                 'Goal #$id',
@@ -67,7 +68,7 @@ class GoalPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            Expanded(
+            const Expanded(
               child: MenListComponent(),
             ),
           ],
@@ -75,7 +76,7 @@ class GoalPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingButton(
         heroTag: 'goal_page',
-        floatingButton: (context, isExpanded) => AnimatedRotation(
+        floatingButton: (final context, final isExpanded) => AnimatedRotation(
           turns: isExpanded ? -1 / 8 : 0,
           duration: const Duration(milliseconds: 200),
           child: const Icon(Icons.add),
@@ -85,7 +86,7 @@ class GoalPage extends StatelessWidget {
             deleteCallback: () async {},
           ),
           ElevatedButton(
-            child: Text('Change description'),
+            child: const Text('Change description'),
             onPressed: () {
               context.goNamed(GoalEditPage.routeName, pathParameters: {
                 'id': id!,
@@ -93,7 +94,7 @@ class GoalPage extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            child: Text('Add man'),
+            child: const Text('Add man'),
             onPressed: () {},
           ),
         ],

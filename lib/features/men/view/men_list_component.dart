@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/features/men/men.dart';
 
+import '../men.dart';
 import 'man_card_tile.dart';
 import 'men_builder.dart';
 
@@ -30,17 +30,24 @@ class _MenListComponentState extends State<MenListComponent>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     super.build(context);
 
     return MenBuilder(
-      builder: (context, men) => ListView(
-        controller: _scrollController,
-        padding: const EdgeInsets.all(8.0),
-        children: [
-          for (final man in men) ManCardTile(man: man),
-        ],
-      ),
+      builder: (final context, final men) {
+        if (men.isEmpty) {
+          return const Center(
+            child: Text('Empty'),
+          );
+        }
+        return ListView(
+          controller: _scrollController,
+          padding: const EdgeInsets.all(8.0),
+          children: [
+            for (final man in men) ManCardTile(man: man),
+          ],
+        );
+      },
     );
   }
 

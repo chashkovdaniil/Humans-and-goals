@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/features/goal/view/goal_page.dart';
 
 import '../domain/goal_model.dart';
 import '../goal.dart';
+import 'goal_page.dart';
 
 class GoalsListComponent extends StatefulWidget {
   final List<GoalModel> goalsList;
@@ -17,8 +17,14 @@ class GoalsListComponent extends StatefulWidget {
 class _GoalsListComponentState extends State<GoalsListComponent>
     with AutomaticKeepAliveClientMixin {
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     super.build(context);
+
+    if (widget.goalsList.isEmpty) {
+      return Center(
+        child: Text('Empty'),
+      );
+    }
 
     return ListView(
       padding: const EdgeInsets.all(8.0),
@@ -28,7 +34,13 @@ class _GoalsListComponentState extends State<GoalsListComponent>
             child: ListTile(
               title: Hero(
                 tag: 'goal_title_${goal.id}',
-                flightShuttleBuilder: (_, __, ___, ____, _____) {
+                flightShuttleBuilder: (
+                  final _,
+                  final __,
+                  final ___,
+                  final ____,
+                  final _____,
+                ) {
                   return Material(
                     child: Text(
                       'Goal #${goal.id}',
@@ -37,9 +49,9 @@ class _GoalsListComponentState extends State<GoalsListComponent>
                 },
                 child: Text('Goal #${goal.id}'),
               ),
-              subtitle: Text('14 people'),
+              subtitle: const Text('14 people'),
               trailing: IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () {},
               ),
               onTap: () {

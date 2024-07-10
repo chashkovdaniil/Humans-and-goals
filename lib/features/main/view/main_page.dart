@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/features/main/view/main_view_model.dart';
 
 import '../../goals/view/goals_page.dart';
 import '../../men/men.dart';
+import 'main_view_model.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -28,23 +28,23 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final viewModel = TabsProvider.of(context);
 
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        children: [
-          const GoalsPage(),
-          const MenPage(),
+        children: const [
+          GoalsPage(),
+          MenPage(),
         ],
       ),
       bottomNavigationBar: TabsBuilder(
-        builder: (context, tab, _) => BottomNavigationBar(
+        builder: (final context, final tab, final _) => BottomNavigationBar(
           currentIndex: tab.index,
           showSelectedLabels: true,
           showUnselectedLabels: false,
-          onTap: (index) {
+          onTap: (final index) {
             viewModel.openTabByIndex(index);
           },
           items: const [

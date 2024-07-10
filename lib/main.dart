@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/core/router.dart';
-import 'package:goals_tracker/features/main/view/main_view_model.dart';
 
+import 'core/router.dart';
+import 'features/main/view/main_view_model.dart';
 import 'features/men/view/men_scope.dart';
 
 void main() {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return TabsProvider(
       child: MenScope(
         child: MaterialApp.router(
