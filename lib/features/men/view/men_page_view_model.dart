@@ -50,4 +50,10 @@ class MenPageViewModel extends StateNotifier<MenPageState> {
     final men = await _manInteractor.getMen(15, 0);
     state = state.copyWith(men: men);
   }
+
+  Future<void> onSaveMan(final ManModel man) async {
+    await _manInteractor.saveMan(man);
+    final men = await _manInteractor.getMen(15, 0);
+    state = state.copyWith(men: men);
+  }
 }

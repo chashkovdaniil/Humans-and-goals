@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../goal/goal.dart';
 import '../../../men.dart';
+import '../../edit_man/man_edit_page.dart';
 import 'man_builder.dart';
-import 'man_edit_page.dart';
 
 class ManPage extends StatelessWidget {
   static const routeName = 'man';
@@ -18,10 +18,6 @@ class ManPage extends StatelessWidget {
     final id = GoRouterState.of(context).pathParameters['id'];
     final manModel = GoRouterState.of(context).extra as ManModel?;
 
-    if (manModel != null) {
-      return _ManViewingPage(manModel: manModel);
-    }
-
     if (id == null) {
       assert(false, 'Man id is null');
       return const ErrorPage(errorText: 'Man id is null');
@@ -30,6 +26,9 @@ class ManPage extends StatelessWidget {
     return ManBuilder(
       id: id,
       onLoading: (final context) {
+        if (manModel != null) {
+          return _ManViewingPage(manModel: manModel);
+        }
         return const LoadingPage();
       },
       onError: (final context, final error) {

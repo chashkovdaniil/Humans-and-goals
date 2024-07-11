@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../domain/data/man_repository_impl.dart';
 import '../domain/interactor/man_interactor.dart';
-import '../features/new_man/man_new_dialog_view_model.dart';
 import 'men_page_view_model.dart';
 
 class MenScope extends StatelessWidget {
@@ -15,13 +14,6 @@ class MenScope extends StatelessWidget {
     final bool listen = true,
   }) {
     return _MenScopeInherited.of(context, listen: listen).menPageViewModel;
-  }
-
-  static ManNewDialogViewModel manNewDialogViewModelOf(
-    final BuildContext context, {
-    final bool listen = true,
-  }) {
-    return _MenScopeInherited.of(context, listen: listen).manNewDialogViewModel;
   }
 
   static ManInteractor manInteractorOf(
@@ -40,9 +32,6 @@ class MenScope extends StatelessWidget {
 
     return _MenScopeInherited(
       menPageViewModel: menPageViewModel,
-      manNewDialogViewModel: ManNewDialogViewModel(
-        menPageViewModel,
-      ),
       manInteractor: manInteractor,
       child: child,
     );
@@ -51,13 +40,11 @@ class MenScope extends StatelessWidget {
 
 class _MenScopeInherited extends InheritedWidget {
   final MenPageViewModel menPageViewModel;
-  final ManNewDialogViewModel manNewDialogViewModel;
   final ManInteractor manInteractor;
 
   const _MenScopeInherited({
     required super.child,
     required this.menPageViewModel,
-    required this.manNewDialogViewModel,
     required this.manInteractor,
   });
 
@@ -78,6 +65,8 @@ class _MenScopeInherited extends InheritedWidget {
 
   @override
   bool updateShouldNotify(final _MenScopeInherited old) {
-    return old.menPageViewModel != menPageViewModel;
+    return old.menPageViewModel != menPageViewModel ||
+        old.child != child ||
+        old.manInteractor != manInteractor;
   }
 }

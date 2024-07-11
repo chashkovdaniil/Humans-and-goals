@@ -4,7 +4,7 @@ import '../features/goal/view/goal_edit_page.dart';
 import '../features/goal/view/goal_new_dialog.dart';
 import '../features/goal/view/goal_page.dart';
 import '../features/main/view/main_page.dart';
-import '../features/men/features/man/view/man_edit_page.dart';
+import '../features/men/features/edit_man/man_edit_page.dart';
 import '../features/men/features/man/view/man_page.dart';
 import '../features/men/features/new_man/man_new_dialog.dart';
 import 'widgets/dialog_page.dart';

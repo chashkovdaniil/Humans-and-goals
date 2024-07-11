@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/widgets/widgets.dart';
-import '../../../domain/models/man_model.dart';
-import 'man_builder.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../domain/models/man_model.dart';
+import '../man/view/man_builder.dart';
+import 'man_edit_scope.dart';
 
 class ManEditPage extends StatelessWidget {
   static const routeName = 'man_edit';
@@ -17,7 +18,9 @@ class ManEditPage extends StatelessWidget {
     final manModel = GoRouterState.of(context).extra as ManModel?;
 
     if (manModel != null) {
-      return _ManEditingView(manModel: manModel);
+      return ManEditScope(
+        child: _ManEditingView(manModel: manModel),
+      );
     }
 
     if (id == null) {
@@ -25,11 +28,13 @@ class ManEditPage extends StatelessWidget {
       return const ErrorPage(errorText: 'Man id is null');
     }
 
-    return ManBuilder(
-      id: id,
-      builder: (final _, final man) {
-        return _ManEditingView(manModel: man);
-      },
+    return ManEditScope(
+      child: ManBuilder(
+        id: id,
+        builder: (final _, final man) {
+          return _ManEditingView(manModel: man);
+        },
+      ),
     );
   }
 }
@@ -55,6 +60,9 @@ class _ManEditingViewState extends State<_ManEditingView> {
     _descriptionEditingController = TextEditingController(
       text: widget.manModel.description,
     );
+    ManEditScope.viewModelOf(context, listen: false).attachModel(
+      widget.manModel,
+    );
     super.initState();
   }
 
@@ -78,12 +86,20 @@ class _ManEditingViewState extends State<_ManEditingView> {
         children: [
           TextField(
             controller: _fullnameEditingController,
+            onChanged: (final fullname) {
+              ManEditScope.viewModelOf(context).onFullnameChanged(fullname);
+            },
           ),
           Expanded(
             child: TextField(
               controller: _descriptionEditingController,
               maxLength: 500,
               maxLines: null,
+              onChanged: (final description) {
+                ManEditScope.viewModelOf(context).onDescriptionChanged(
+                  description,
+                );
+              },
             ),
           ),
         ],
@@ -91,7 +107,9 @@ class _ManEditingViewState extends State<_ManEditingView> {
       floatingActionButton: FloatingActionButton.extended(
         icon: const Icon(Icons.save),
         label: const Text('Save'),
-        onPressed: () {},
+        onPressed: () {
+          ManEditScope.viewModelOf(context).onSaveTap(context);
+        },
       ),
     );
   }

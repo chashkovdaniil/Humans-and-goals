@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../men.dart';
+import 'man_new_scope.dart';
 
-class ManNewDialog extends StatefulWidget {
+class ManNewDialog extends StatelessWidget {
   static const routeName = 'people_new';
   static const routePath = 'people/new';
 
   const ManNewDialog({super.key});
 
   @override
-  State<ManNewDialog> createState() => _ManNewDialogState();
+  Widget build(final context) {
+    return const ManNewScope(
+      child: ManNewDialogView(),
+    );
+  }
 }
 
-class _ManNewDialogState extends State<ManNewDialog> {
+class ManNewDialogView extends StatefulWidget {
+  const ManNewDialogView({super.key});
+
+  @override
+  State<ManNewDialogView> createState() => _ManNewDialogViewState();
+}
+
+class _ManNewDialogViewState extends State<ManNewDialogView> {
   late final TextEditingController _fullnameEditingController;
   late final GlobalKey<FormState> _formKey;
 
@@ -38,7 +49,7 @@ class _ManNewDialogState extends State<ManNewDialog> {
         title: TextFormField(
           controller: _fullnameEditingController,
           onChanged: (final fullname) {
-            final manNewDialogViewModel = MenScope.manNewDialogViewModelOf(
+            final manNewDialogViewModel = ManNewScope.viewModelOf(
               context,
               listen: false,
             );
@@ -71,7 +82,7 @@ class _ManNewDialogState extends State<ManNewDialog> {
                     final isValid = _formKey.currentState?.validate() ?? false;
 
                     if (isValid) {
-                      MenScope.manNewDialogViewModelOf(context).onNewManTap();
+                      ManNewScope.viewModelOf(context).onNewManTap();
                       context.pop();
                     }
                   },
