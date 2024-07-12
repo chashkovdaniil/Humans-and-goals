@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../features/man/view/man_card_tile.dart';
 import '../men.dart';
-import 'man_card_tile.dart';
 import 'men_builder.dart';
 
 class MenListComponent extends StatefulWidget {

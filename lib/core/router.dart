@@ -62,9 +62,24 @@ final router = GoRouter(
             GoRoute(
               path: ManEditPage.routePath,
               name: ManEditPage.routeName,
-              builder: (final _, final __) => const ManEditScope(
-                child: ManEditPage(),
-              ),
+              builder: (final context, final state) {
+                final id = state.pathParameters['id'];
+                final manModel = state.extra as ManModel?;
+
+                return ManInfoScope(
+                  child: ManBuilder(
+                    id: id!,
+                    initialModel: manModel,
+                    builder: (final context, final state, final child) {
+                      return ManEditScope(
+                        child: ManEditPage(
+                          state: state,
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),

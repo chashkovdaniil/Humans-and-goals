@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/widgets/widgets.dart';
 import '../../domain/models/man_model.dart';
-import '../man/view/man_builder.dart';
+import '../man_info/models/man_info_view_model_state.dart';
 import 'man_edit_scope.dart';
 import 'man_edit_view_model.dart';
 
@@ -11,57 +10,39 @@ class ManEditPage extends StatelessWidget {
   static const routeName = 'man_edit';
   static const routePath = 'edit';
 
-  const ManEditPage({super.key});
+  final ManInfoViewModelState state;
+
+  const ManEditPage({required this.state, super.key});
 
   @override
   Widget build(final context) {
-    final id = GoRouterState.of(context).pathParameters['id'];
-    final manModel = GoRouterState.of(context).extra as ManModel?;
+    return state.map(
+      loading: (final loading) {
+        final man = loading.man;
+        if (man != null) {
+          return _ManEditingView(manModel: man);
+        }
 
-    if (manModel != null) {
-      return _ManEditingView(manModel: manModel);
-    }
+        return const LoadingPage();
+      },
+      idle: (final _) => const LoadingPage(),
+      error: (final error) {
+        final man = error.man;
+        if (man != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error ${error.error}'),
+            ),
+          );
+          return _ManEditingView(manModel: man);
+        }
 
-    if (id == null) {
-      assert(false, 'Man id is null');
-      return const ErrorPage(errorText: 'Man id is null');
-    }
-
-    return ManBuilder(
-      id: id,
-      builder: (final _, final state, final child) {
-        return state.map(
-          loading: (final loading) {
-            final man = loading.man;
-            if (man != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Updating user'),
-                ),
-              );
-              return _ManEditingView(manModel: man);
-            }
-
-            return const LoadingPage();
-          },
-          idle: (final _) => const LoadingPage(),
-          error: (final error) {
-            final man = error.man;
-            if (man != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Error ${error.error}'),
-                ),
-              );
-              return _ManEditingView(manModel: man);
-            }
-
-            return ErrorPage(
-              errorText: error.error?.toString() ?? '',
-            );
-          },
-          success: (final success) => _ManEditingView(manModel: success.man),
+        return ErrorPage(
+          errorText: error.error?.toString() ?? '',
         );
+      },
+      success: (final value) {
+        return _ManEditingView(manModel: value.man);
       },
     );
   }

@@ -52,12 +52,6 @@ class _ManBuilderState extends State<ManBuilder> {
   }
 
   @override
-  void dispose() {
-    _viewModel?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(final BuildContext context) {
     final viewModel = _viewModel;
     return StateNotifierBuilder(

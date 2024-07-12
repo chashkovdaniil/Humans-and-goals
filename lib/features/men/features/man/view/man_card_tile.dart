@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../domain/models/man_model.dart';
-import '../features/man_info/man_info_page.dart';
-import 'men_scope.dart';
+import '../../../domain/models/man_model.dart';
+import '../../../view/men_scope.dart';
+import '../../man_info/man_info_page.dart';
 
 class ManCardTile extends StatelessWidget {
   final ManModel man;

@@ -25,9 +25,7 @@ class ManEditScope extends StatelessWidget {
     final manInteractor = MenScope.manInteractorOf(context);
 
     return StateNotifierProvider(
-      create: (final context) {
-        return ManEditViewModel(manInteractor);
-      },
+      create: (final context) => ManEditViewModel(manInteractor),
       child: child,
     );
   }

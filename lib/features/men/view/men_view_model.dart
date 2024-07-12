@@ -45,18 +45,6 @@ class MenViewModel extends StateNotifier<MenViewModelState> {
     state = state.copyWith(men: men);
   }
 
-  Future<void> onNewMan(final ManModel man) async {
-    await _manInteractor.addMan(man);
-    final men = await _manInteractor.getMen(15, 0);
-    state = state.copyWith(men: men);
-  }
-
-  Future<void> onSaveMan(final ManModel man) async {
-    await _manInteractor.saveMan(man);
-    final men = await _manInteractor.getMen(15, 0);
-    state = state.copyWith(men: men);
-  }
-
   Future<void> onUpdateListByNotification() async {
     state = state.copyWith(
       men: await _manInteractor.getMen(15, 10),
