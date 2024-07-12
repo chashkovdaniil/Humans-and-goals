@@ -1,6 +1,10 @@
 import '../models/man_model.dart';
+import 'man_repository_impl.dart';
 
 abstract interface class ManRepository {
+  /// Создает экземпляр репозитория
+  factory ManRepository() => ManRepositoryImpl();
+
   /// Позволяет получить человека по идентификатору
   Future<ManModel> getMan(final String id);
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import 'man_new_scope.dart';
+import 'man_new_view_model.dart';
 
 class ManNewDialog extends StatelessWidget {
   static const routeName = 'people_new';
@@ -27,12 +29,20 @@ class ManNewDialogView extends StatefulWidget {
 class _ManNewDialogViewState extends State<ManNewDialogView> {
   late final TextEditingController _fullnameEditingController;
   late final GlobalKey<FormState> _formKey;
+  ManNewViewModel? _viewModel;
 
   @override
   void initState() {
     _fullnameEditingController = TextEditingController();
     _formKey = GlobalKey<FormState>(debugLabel: 'man_new_key');
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _viewModel?.dispose();
+    _viewModel = context.watch<ManNewViewModel>();
+    super.didChangeDependencies();
   }
 
   @override
@@ -49,21 +59,16 @@ class _ManNewDialogViewState extends State<ManNewDialogView> {
         title: TextFormField(
           controller: _fullnameEditingController,
           onChanged: (final fullname) {
-            final manNewDialogViewModel = ManNewScope.viewModelOf(
-              context,
-              listen: false,
-            );
-            manNewDialogViewModel.onChangeFullname(fullname);
+            _viewModel?.onChangeFullname(fullname);
           },
           validator: (final text) {
-            if (text?.isEmpty ?? true) {
+            if (text?.isEmpty ?? false) {
               return 'Fill field';
             }
             return null;
           },
           decoration: const InputDecoration(
             hintText: 'Fullname',
-            errorText: 'Fill field',
           ),
         ),
         children: [
@@ -82,7 +87,7 @@ class _ManNewDialogViewState extends State<ManNewDialogView> {
                     final isValid = _formKey.currentState?.validate() ?? false;
 
                     if (isValid) {
-                      ManNewScope.viewModelOf(context).onNewManTap();
+                      _viewModel?.onNewManTap(context);
                       context.pop();
                     }
                   },

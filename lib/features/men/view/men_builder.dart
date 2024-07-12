@@ -10,7 +10,7 @@ class MenBuilder extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final menPageViewModel = MenScope.menPageViewModelOf(context);
+    final menPageViewModel = MenScope.viewModelOf(context);
 
     return StreamBuilder<List<ManModel>>(
       initialData: menPageViewModel.men,

@@ -55,7 +55,7 @@ class _MenListComponentState extends State<MenListComponent>
     final scrollLeftPixels = _scrollController.position.extentAfter;
 
     if (scrollLeftPixels < 40) {
-      MenScope.menPageViewModelOf(context).onScrollDown();
+      MenScope.viewModelOf(context).onScrollDown();
     }
   }
 

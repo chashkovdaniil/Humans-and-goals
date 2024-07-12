@@ -5,6 +5,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../../domain/models/man_model.dart';
 import '../man/view/man_builder.dart';
 import 'man_edit_scope.dart';
+import 'man_edit_view_model.dart';
 
 class ManEditPage extends StatelessWidget {
   static const routeName = 'man_edit';
@@ -18,9 +19,7 @@ class ManEditPage extends StatelessWidget {
     final manModel = GoRouterState.of(context).extra as ManModel?;
 
     if (manModel != null) {
-      return ManEditScope(
-        child: _ManEditingView(manModel: manModel),
-      );
+      return _ManEditingView(manModel: manModel);
     }
 
     if (id == null) {
@@ -28,13 +27,42 @@ class ManEditPage extends StatelessWidget {
       return const ErrorPage(errorText: 'Man id is null');
     }
 
-    return ManEditScope(
-      child: ManBuilder(
-        id: id,
-        builder: (final _, final man) {
-          return _ManEditingView(manModel: man);
-        },
-      ),
+    return ManBuilder(
+      id: id,
+      builder: (final _, final state, final child) {
+        return state.map(
+          loading: (final loading) {
+            final man = loading.man;
+            if (man != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Updating user'),
+                ),
+              );
+              return _ManEditingView(manModel: man);
+            }
+
+            return const LoadingPage();
+          },
+          idle: (final _) => const LoadingPage(),
+          error: (final error) {
+            final man = error.man;
+            if (man != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Error ${error.error}'),
+                ),
+              );
+              return _ManEditingView(manModel: man);
+            }
+
+            return ErrorPage(
+              errorText: error.error?.toString() ?? '',
+            );
+          },
+          success: (final success) => _ManEditingView(manModel: success.man),
+        );
+      },
     );
   }
 }
@@ -51,6 +79,7 @@ class _ManEditingView extends StatefulWidget {
 class _ManEditingViewState extends State<_ManEditingView> {
   late final TextEditingController _fullnameEditingController;
   late final TextEditingController _descriptionEditingController;
+  ManEditViewModel? _viewModel;
 
   @override
   void initState() {
@@ -60,10 +89,15 @@ class _ManEditingViewState extends State<_ManEditingView> {
     _descriptionEditingController = TextEditingController(
       text: widget.manModel.description,
     );
-    ManEditScope.viewModelOf(context, listen: false).attachModel(
-      widget.manModel,
-    );
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _viewModel?.dispose();
+    _viewModel = ManEditScope.viewModelOf(context);
+    _viewModel?.attachModel(widget.manModel);
+    super.didChangeDependencies();
   }
 
   @override
@@ -87,7 +121,7 @@ class _ManEditingViewState extends State<_ManEditingView> {
           TextField(
             controller: _fullnameEditingController,
             onChanged: (final fullname) {
-              ManEditScope.viewModelOf(context).onFullnameChanged(fullname);
+              _viewModel?.onFullnameChanged(fullname);
             },
           ),
           Expanded(
@@ -96,9 +130,7 @@ class _ManEditingViewState extends State<_ManEditingView> {
               maxLength: 500,
               maxLines: null,
               onChanged: (final description) {
-                ManEditScope.viewModelOf(context).onDescriptionChanged(
-                  description,
-                );
+                _viewModel?.onDescriptionChanged(description);
               },
             ),
           ),
@@ -108,7 +140,7 @@ class _ManEditingViewState extends State<_ManEditingView> {
         icon: const Icon(Icons.save),
         label: const Text('Save'),
         onPressed: () {
-          ManEditScope.viewModelOf(context).onSaveTap(context);
+          _viewModel?.onSaveTap(context);
         },
       ),
     );

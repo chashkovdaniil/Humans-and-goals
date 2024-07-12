@@ -1,18 +1,17 @@
 import 'package:flutter/widgets.dart';
 import 'package:state_notifier/state_notifier.dart';
 
+import '../../domain/interactor/man_interactor.dart';
 import '../../men.dart';
-import '../../view/men_page_view_model.dart';
-import '../man/view/man_updated_notification.dart';
-import 'models/man_edit_page_state.dart';
+import 'models/man_edit_view_model_state.dart';
 
-class ManEditPageViewModel extends StateNotifier<ManEditPageState> {
-  final MenPageViewModel _menPageViewModel;
+class ManEditViewModel extends StateNotifier<ManEditViewModelState> {
+  final ManInteractor _manInteractor;
 
-  ManEditPageViewModel(
-    this._menPageViewModel,
+  ManEditViewModel(
+    this._manInteractor,
   ) : super(
-          const ManEditPageState(
+          const ManEditViewModelState(
             initialModel: null,
             fullname: '',
             description: '',
@@ -49,12 +48,9 @@ class ManEditPageViewModel extends StateNotifier<ManEditPageState> {
       description: state.description,
     );
     state = state.copyWith(initialModel: changedModel);
-    await _menPageViewModel.onSaveMan(changedModel);
-
+    await _manInteractor.saveMan(changedModel);
     if (context.mounted) {
-      context.dispatchNotification(ManUpdatedNotification(id: changedModel.id));
-    } else {
-      assert(false, 'BuildContext must not be null');
+      context.dispatchNotification(UpdateMenNotification());
     }
   }
 }

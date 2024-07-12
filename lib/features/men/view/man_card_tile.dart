@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../domain/models/man_model.dart';
-import '../features/man/view/man_page.dart';
+import '../features/man_info/man_info_page.dart';
 import 'men_scope.dart';
 
 class ManCardTile extends StatelessWidget {
@@ -19,7 +19,7 @@ class ManCardTile extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
-            MenScope.menPageViewModelOf(
+            MenScope.viewModelOf(
               context,
               listen: false,
             ).onRemoveManTap(man);
@@ -27,7 +27,7 @@ class ManCardTile extends StatelessWidget {
         ),
         onTap: () {
           context.goNamed(
-            ManPage.routeName,
+            ManInfoPage.routeName,
             pathParameters: {'id': man.id},
             extra: man,
           );

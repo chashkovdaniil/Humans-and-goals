@@ -4,14 +4,14 @@ import 'package:state_notifier/state_notifier.dart';
 
 import '../domain/interactor/man_interactor.dart';
 import '../domain/models/man_model.dart';
-import 'models/men_page_state.dart';
+import 'models/men_view_model_state.dart';
 
-class MenPageViewModel extends StateNotifier<MenPageState> {
+class MenViewModel extends StateNotifier<MenViewModelState> {
   final ManInteractor _manInteractor;
 
-  MenPageViewModel(
+  MenViewModel(
     this._manInteractor,
-  ) : super(const MenPageState(men: []));
+  ) : super(const MenViewModelState(men: []));
 
   List<ManModel> get men => state.men;
 
@@ -55,5 +55,11 @@ class MenPageViewModel extends StateNotifier<MenPageState> {
     await _manInteractor.saveMan(man);
     final men = await _manInteractor.getMen(15, 0);
     state = state.copyWith(men: men);
+  }
+
+  Future<void> onUpdateListByNotification() async {
+    state = state.copyWith(
+      men: await _manInteractor.getMen(15, 10),
+    );
   }
 }

@@ -1,42 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/widgets/widgets.dart';
-import '../../../../goal/goal.dart';
-import '../../../men.dart';
-import '../../edit_man/man_edit_page.dart';
-import 'man_builder.dart';
+import '../../../../core/widgets/widgets.dart';
+import '../../../goal/goal.dart';
+import '../../men.dart';
+import '../man_edit/man_edit_page.dart';
+import 'models/man_info_view_model_state.dart';
 
-class ManPage extends StatelessWidget {
+class ManInfoPage extends StatefulWidget {
   static const routeName = 'man';
   static const routePath = 'man/:id';
 
-  const ManPage({super.key});
+  final ManInfoViewModelState state;
+
+  const ManInfoPage({super.key, required this.state});
 
   @override
+  State<ManInfoPage> createState() => _ManInfoPageState();
+}
+
+class _ManInfoPageState extends State<ManInfoPage> {
+  @override
   Widget build(final context) {
-    final id = GoRouterState.of(context).pathParameters['id'];
-    final manModel = GoRouterState.of(context).extra as ManModel?;
-
-    if (id == null) {
-      assert(false, 'Man id is null');
-      return const ErrorPage(errorText: 'Man id is null');
-    }
-
-    return ManBuilder(
-      id: id,
-      onLoading: (final context) {
-        if (manModel != null) {
-          return _ManViewingPage(manModel: manModel);
+    return widget.state.map(
+      loading: (final loading) {
+        final man = loading.man;
+        if (man != null) {
+          return _ManViewingPage(manModel: man);
         }
+
         return const LoadingPage();
       },
-      onError: (final context, final error) {
-        return ErrorPage(errorText: error.toString());
+      idle: (final _) => const LoadingPage(),
+      error: (final error) {
+        final man = error.man;
+        if (man != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error ${error.error}'),
+            ),
+          );
+          return _ManViewingPage(manModel: man);
+        }
+
+        return ErrorPage(
+          errorText: error.error?.toString() ?? '',
+        );
       },
-      builder: (final _, final man) {
-        return _ManViewingPage(manModel: man);
-      },
+      success: (final success) => _ManViewingPage(manModel: success.man),
     );
   }
 }
@@ -91,7 +102,7 @@ class _ManViewingPage extends StatelessWidget {
         actions: [
           AnimatedDeleteButton(
             deleteCallback: () async {
-              MenScope.menPageViewModelOf(
+              MenScope.viewModelOf(
                 context,
                 listen: false,
               ).onRemoveManTap(manModel);

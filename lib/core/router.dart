@@ -4,12 +4,17 @@ import '../features/goal/view/goal_edit_page.dart';
 import '../features/goal/view/goal_new_dialog.dart';
 import '../features/goal/view/goal_page.dart';
 import '../features/main/view/main_page.dart';
-import '../features/men/features/edit_man/man_edit_page.dart';
-import '../features/men/features/man/view/man_page.dart';
-import '../features/men/features/new_man/man_new_dialog.dart';
+import '../features/men/features/man/view/man_builder.dart';
+import '../features/men/features/man_edit/man_edit_page.dart';
+import '../features/men/features/man_edit/man_edit_scope.dart';
+import '../features/men/features/man_info/man_info_page.dart';
+import '../features/men/features/man_info/man_info_scope.dart';
+import '../features/men/features/man_new/man_new_dialog.dart';
+import '../features/men/men.dart';
 import 'widgets/dialog_page.dart';
 
 final router = GoRouter(
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(
       path: '/',
@@ -38,14 +43,28 @@ final router = GoRouter(
           },
         ),
         GoRoute(
-          path: ManPage.routePath,
-          name: ManPage.routeName,
-          builder: (final _, final __) => const ManPage(),
+          path: ManInfoPage.routePath,
+          name: ManInfoPage.routeName,
+          builder: (final context, final state) {
+            final id = state.pathParameters['id'];
+            final manModel = state.extra as ManModel?;
+            return ManInfoScope(
+              child: ManBuilder(
+                id: id!,
+                initialModel: manModel,
+                builder: (final context, final state, final child) {
+                  return ManInfoPage(state: state);
+                },
+              ),
+            );
+          },
           routes: [
             GoRoute(
               path: ManEditPage.routePath,
               name: ManEditPage.routeName,
-              builder: (final _, final __) => const ManEditPage(),
+              builder: (final _, final __) => const ManEditScope(
+                child: ManEditPage(),
+              ),
             ),
           ],
         ),

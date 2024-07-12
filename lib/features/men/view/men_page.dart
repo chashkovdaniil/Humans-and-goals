@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/new_man/man_new_dialog.dart';
+import '../features/man_new/man_new_dialog.dart';
 import '../men.dart';
 
 class MenPage extends StatelessWidget {
