@@ -7,6 +7,6 @@ part 'men_view_model_state.freezed.dart';
 @freezed
 class MenViewModelState with _$MenViewModelState {
   const factory MenViewModelState({
-    required final List<ManModel> men,
+    required final List<Man> men,
   }) = _MenViewModelState;
 }

@@ -53,7 +53,7 @@ class _ManInfoPageState extends State<ManInfoPage> {
 }
 
 class _ManViewingPage extends StatelessWidget {
-  final ManModel manModel;
+  final Man manModel;
 
   const _ManViewingPage({required this.manModel});
 

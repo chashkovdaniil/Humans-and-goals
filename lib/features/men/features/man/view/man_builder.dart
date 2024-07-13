@@ -8,7 +8,7 @@ import '../../man_info/models/man_info_view_model_state.dart';
 
 class ManBuilder extends StatefulWidget {
   final String id;
-  final ManModel? initialModel;
+  final Man? initialModel;
   final Widget? child;
   final Widget Function(BuildContext, ManInfoViewModelState, Widget? child)
       builder;

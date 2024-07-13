@@ -17,7 +17,7 @@ class GoalsPage extends StatelessWidget {
       body: GoalsListComponent(
         goalsList: List.generate(
           20,
-          (final id) => GoalModel(
+          (final id) => Goal(
             id: id.toString(),
             men: [],
           ),

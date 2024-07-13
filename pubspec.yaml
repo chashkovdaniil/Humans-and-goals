@@ -19,6 +19,8 @@ dependencies:
   provider: ^6.1.2
   man_domain:
     path: 'packages/man/man_domain'
+  goal_domain:
+    path: 'packages/goal/goal_domain'
 
 dev_dependencies:
   flutter_test:

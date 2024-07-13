@@ -1,30 +1,40 @@
 import 'package:man_domain/man_domain.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
-import 'package:uuid/uuid.dart';
 
 import 'mock_man_repository.dart';
 
 const assertionError = TypeMatcher<AssertionError>();
 
-const empty = ManModel(id: '', fullname: '', description: '', goals: []);
-final emptyWithValidId = ManModel(
-  id: Uuid().v4(),
+const empty = Man(
+  id: '',
   fullname: '',
   description: '',
   goals: [],
+  link: '',
+  phone: '',
 );
-final validMan = ManModel(
-  id: Uuid().v4(),
+const emptyWithValidId = Man(
+  id: 'id',
+  fullname: '',
+  description: '',
+  goals: [],
+  link: '',
+  phone: '',
+);
+const validMan = Man(
+  id: 'id',
   fullname: 'fullname',
   description: '',
   goals: [],
+  link: '',
+  phone: '',
 );
 
 void main() {
   group('Errors, exceptions, asserts', () {
-    MockManRepository manRepository = MockManRepository();
-    ManInteractor manInteractor = ManInteractor(repository: (manRepository));
+    final manRepository = MockManRepository();
+    final manInteractor = ManInteractor(repository: (manRepository));
 
     setUp(() {});
 
@@ -35,19 +45,19 @@ void main() {
     test('Invalid id', () async {
       await expectLater(
         manInteractor.getMan(empty.id),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<ArgumentError>()),
       );
       await expectLater(
         manInteractor.addMan(empty),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<ArgumentError>()),
       );
       await expectLater(
         manInteractor.saveMan(empty),
-        throwsA(isA<FormatException>()),
+        throwsA(isA<ArgumentError>()),
       );
       await expectLater(
-        manInteractor.addMan(empty),
-        throwsA(isA<FormatException>()),
+        manInteractor.removeMan(empty),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
@@ -68,7 +78,7 @@ void main() {
         throwsA(isA<ArgumentError>()),
       );
       await expectLater(
-        manInteractor.addMan(emptyWithValidId),
+        manInteractor.removeMan(emptyWithValidId),
         throwsA(isA<ArgumentError>()),
       );
     });
@@ -89,7 +99,7 @@ void main() {
       await expectLater(manInteractor.getMan(validMan.id), completes);
       await expectLater(manInteractor.addMan(validMan), completes);
       await expectLater(manInteractor.saveMan(validMan), completes);
-      await expectLater(manInteractor.addMan(validMan), completes);
+      await expectLater(manInteractor.removeMan(validMan), completes);
     });
   });
 }

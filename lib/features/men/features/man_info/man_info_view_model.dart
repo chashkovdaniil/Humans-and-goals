@@ -15,7 +15,7 @@ class ManInfoViewModel extends StateNotifier<ManInfoViewModelState> {
     state = ManInfoViewModelState.success(man: man);
   }
 
-  void attach(final ManModel initialModel) {
+  void attach(final Man initialModel) {
     state = state.map(
       loading: (final s) => s.copyWith(man: initialModel),
       idle: (final _) => ManInfoViewModelState.success(man: initialModel),

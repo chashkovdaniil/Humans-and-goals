@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../men.dart';
 
 class MenBuilder extends StatelessWidget {
-  final Widget Function(BuildContext, List<ManModel>) builder;
+  final Widget Function(BuildContext, List<Man>) builder;
 
   const MenBuilder({super.key, required this.builder});
 
@@ -11,7 +11,7 @@ class MenBuilder extends StatelessWidget {
   Widget build(final BuildContext context) {
     final menPageViewModel = MenScope.viewModelOf(context);
 
-    return StreamBuilder<List<ManModel>>(
+    return StreamBuilder<List<Man>>(
       initialData: menPageViewModel.men,
       stream: menPageViewModel.stream.map((final s) => s.men),
       builder: (final context, final snapshot) {

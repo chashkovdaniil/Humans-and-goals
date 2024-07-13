@@ -8,7 +8,7 @@ enum ManInfoViewModelStateStatus { idle, loading, success, error }
 
 @freezed
 class ManInfoViewModelState with _$ManInfoViewModelState {
-  ManModel? get man => map(
+  Man? get man => map(
         loading: (final s) => s.man,
         idle: (final _) => null,
         error: (final s) => s.man,
@@ -18,17 +18,17 @@ class ManInfoViewModelState with _$ManInfoViewModelState {
   const ManInfoViewModelState._();
 
   const factory ManInfoViewModelState.loading({
-    required final ManModel? man,
+    required final Man? man,
   }) = _ManInfoViewModelStateLoading;
 
   const factory ManInfoViewModelState.idle() = _ManInfoViewModelStateIdle;
 
   const factory ManInfoViewModelState.error({
-    required final ManModel? man,
+    required final Man? man,
     required final Object? error,
   }) = _ManInfoViewModelStateError;
 
   const factory ManInfoViewModelState.success({
-    required final ManModel man,
+    required final Man man,
   }) = _ManInfoViewModelStateSuccess;
 }

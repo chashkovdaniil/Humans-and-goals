@@ -1,5 +1,7 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../man_domain.dart';
-import 'man_validation.dart';
+import 'man_validator.dart';
 
 /// В этом классе находится вся бизнес логика, обработка данных
 /// Тут происходит взаимодействие с бд.
@@ -9,8 +11,8 @@ final class ManInteractor {
   final ManValidator _validator;
 
   const ManInteractor({
-    required ManRepository repository,
-    ManValidator validator = const ManValidator(),
+    required final ManRepository repository,
+    final ManValidator validator = const ManValidator(),
   })  : _repository = repository,
         _validator = validator;
 
@@ -19,40 +21,41 @@ final class ManInteractor {
   /// [count] - Количество людей
   ///
   /// [page] - Номер страницы
-  Future<List<ManModel>> getMen(final int count, final int page) async {
-    if (count <= 0) {
-      throw ArgumentError.value(page, 'count', 'Must be positive');
-    }
-    if (page <= 0) {
-      throw ArgumentError.value(page, 'page', 'Must be positive');
-    }
+  @useResult
+  Future<List<Man>> getMen(final int count, final int page) async {
+    _validator.checkPageNumber(page);
+    _validator.checkPageElementsCount(count);
 
     return await _repository.getMen(count, page);
   }
 
   /// Получает человека по [id]
-  Future<ManModel> getMan(final String id) async {
-    _validator.isValidIdOrThrow(id);
+  @useResult
+  Future<Man> getMan(final String id) async {
+    _validator.checkId(id);
 
     return await _repository.getMan(id);
   }
 
   /// Добавляет человека
-  Future<void> addMan(final ManModel man) async {
-    _validator.isValidManOrThrow(man);
+  Future<void> addMan(
+    final Man man,
+  ) async {
+    _validator.checkMan(man);
 
     _repository.addMan(man);
   }
 
   /// Сохраняет человека
-  Future<void> saveMan(final ManModel man) async {
-    _validator.isValidManOrThrow(man);
+  Future<void> saveMan(final Man man) async {
+    _validator.checkMan(man);
 
     _repository.saveMan(man);
   }
 
   /// Удаляет человека
-  Future<void> removeMan(final ManModel man) async {
+  Future<void> removeMan(final Man man) async {
+    _validator.checkMan(man);
     _repository.removeMan(man);
   }
 }

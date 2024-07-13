@@ -49,7 +49,7 @@ class ManEditPage extends StatelessWidget {
 }
 
 class _ManEditingView extends StatefulWidget {
-  final ManModel manModel;
+  final Man manModel;
 
   const _ManEditingView({required this.manModel});
 

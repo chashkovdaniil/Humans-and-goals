@@ -5,7 +5,7 @@ import '../../../men.dart';
 import '../../man_info/man_info_page.dart';
 
 class ManCardTile extends StatelessWidget {
-  final ManModel man;
+  final Man man;
 
   const ManCardTile({super.key, required this.man});
 

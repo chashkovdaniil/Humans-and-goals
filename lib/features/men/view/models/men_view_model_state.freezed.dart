@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MenViewModelState {
-  List<ManModel> get men => throw _privateConstructorUsedError;
+  List<Man> get men => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenViewModelStateCopyWith<MenViewModelState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $MenViewModelStateCopyWith<$Res> {
           MenViewModelState value, $Res Function(MenViewModelState) then) =
       _$MenViewModelStateCopyWithImpl<$Res, MenViewModelState>;
   @useResult
-  $Res call({List<ManModel> men});
+  $Res call({List<Man> men});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$MenViewModelStateCopyWithImpl<$Res, $Val extends MenViewModelState>
       men: null == men
           ? _value.men
           : men // ignore: cast_nullable_to_non_nullable
-              as List<ManModel>,
+              as List<Man>,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$MenViewModelStateImplCopyWith<$Res>
       __$$MenViewModelStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ManModel> men});
+  $Res call({List<Man> men});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class __$$MenViewModelStateImplCopyWithImpl<$Res>
       men: null == men
           ? _value._men
           : men // ignore: cast_nullable_to_non_nullable
-              as List<ManModel>,
+              as List<Man>,
     ));
   }
 }
@@ -92,12 +92,11 @@ class __$$MenViewModelStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MenViewModelStateImpl implements _MenViewModelState {
-  const _$MenViewModelStateImpl({required final List<ManModel> men})
-      : _men = men;
+  const _$MenViewModelStateImpl({required final List<Man> men}) : _men = men;
 
-  final List<ManModel> _men;
+  final List<Man> _men;
   @override
-  List<ManModel> get men {
+  List<Man> get men {
     if (_men is EqualUnmodifiableListView) return _men;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_men);
@@ -129,11 +128,11 @@ class _$MenViewModelStateImpl implements _MenViewModelState {
 }
 
 abstract class _MenViewModelState implements MenViewModelState {
-  const factory _MenViewModelState({required final List<ManModel> men}) =
+  const factory _MenViewModelState({required final List<Man> men}) =
       _$MenViewModelStateImpl;
 
   @override
-  List<ManModel> get men;
+  List<Man> get men;
   @override
   @JsonKey(ignore: true)
   _$$MenViewModelStateImplCopyWith<_$MenViewModelStateImpl> get copyWith =>

@@ -17,7 +17,7 @@ class ManNewViewModel extends StateNotifier<ManNewViewModelState> {
   }
 
   Future<void> onNewManTap(final BuildContext context) async {
-    final man = ManModel(
+    final man = Man(
       id: state.uuid,
       fullname: state.fullname,
       description: '',

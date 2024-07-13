@@ -12,7 +12,7 @@ class MenViewModel extends StateNotifier<MenViewModelState> {
     this._manInteractor,
   ) : super(const MenViewModelState(men: []));
 
-  List<ManModel> get men => state.men;
+  List<Man> get men => state.men;
 
   Future<void> init() async {
     final men = await _manInteractor.getMen(10, 0);
@@ -26,7 +26,7 @@ class MenViewModel extends StateNotifier<MenViewModelState> {
       ...state.men,
       ...List.generate(
         5,
-        (final index) => ManModel(
+        (final index) => Man(
           id: ((index + math.Random().nextDouble()) *
                   math.Random().nextInt(state.men.length))
               .toString(),
@@ -38,7 +38,7 @@ class MenViewModel extends StateNotifier<MenViewModelState> {
     ]);
   }
 
-  Future<void> onRemoveManTap(final ManModel man) async {
+  Future<void> onRemoveManTap(final Man man) async {
     _manInteractor.removeMan(man);
     final men = await _manInteractor.getMen(15, 0);
     state = state.copyWith(men: men);

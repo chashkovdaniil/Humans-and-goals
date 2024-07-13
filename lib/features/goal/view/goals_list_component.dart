@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../domain/goal_model.dart';
 import '../goal.dart';
 import 'goal_page.dart';
 
 class GoalsListComponent extends StatefulWidget {
-  final List<GoalModel> goalsList;
+  final List<Goal> goalsList;
 
   const GoalsListComponent({super.key, required this.goalsList});
 

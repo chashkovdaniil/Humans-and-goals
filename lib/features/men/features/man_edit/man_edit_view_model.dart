@@ -18,7 +18,7 @@ class ManEditViewModel extends StateNotifier<ManEditViewModelState> {
           ),
         );
 
-  void attachModel(final ManModel man) {
+  void attachModel(final Man man) {
     state = state.copyWith(
       initialModel: man,
       fullname: man.fullname,

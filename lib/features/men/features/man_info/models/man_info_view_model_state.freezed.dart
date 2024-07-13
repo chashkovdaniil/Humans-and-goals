@@ -18,26 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ManInfoViewModelState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ManModel? man) loading,
+    required TResult Function(Man? man) loading,
     required TResult Function() idle,
-    required TResult Function(ManModel? man, Object? error) error,
-    required TResult Function(ManModel man) success,
+    required TResult Function(Man? man, Object? error) error,
+    required TResult Function(Man man) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ManModel? man)? loading,
+    TResult? Function(Man? man)? loading,
     TResult? Function()? idle,
-    TResult? Function(ManModel? man, Object? error)? error,
-    TResult? Function(ManModel man)? success,
+    TResult? Function(Man? man, Object? error)? error,
+    TResult? Function(Man man)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ManModel? man)? loading,
+    TResult Function(Man? man)? loading,
     TResult Function()? idle,
-    TResult Function(ManModel? man, Object? error)? error,
-    TResult Function(ManModel man)? success,
+    TResult Function(Man? man, Object? error)? error,
+    TResult Function(Man man)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,9 +94,9 @@ abstract class _$$ManInfoViewModelStateLoadingImplCopyWith<$Res> {
           $Res Function(_$ManInfoViewModelStateLoadingImpl) then) =
       __$$ManInfoViewModelStateLoadingImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ManModel? man});
+  $Res call({Man? man});
 
-  $ManModelCopyWith<$Res>? get man;
+  $ManCopyWith<$Res>? get man;
 }
 
 /// @nodoc
@@ -118,18 +118,18 @@ class __$$ManInfoViewModelStateLoadingImplCopyWithImpl<$Res>
       man: freezed == man
           ? _value.man
           : man // ignore: cast_nullable_to_non_nullable
-              as ManModel?,
+              as Man?,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ManModelCopyWith<$Res>? get man {
+  $ManCopyWith<$Res>? get man {
     if (_value.man == null) {
       return null;
     }
 
-    return $ManModelCopyWith<$Res>(_value.man!, (value) {
+    return $ManCopyWith<$Res>(_value.man!, (value) {
       return _then(_value.copyWith(man: value));
     });
   }
@@ -141,7 +141,7 @@ class _$ManInfoViewModelStateLoadingImpl extends _ManInfoViewModelStateLoading {
   const _$ManInfoViewModelStateLoadingImpl({required this.man}) : super._();
 
   @override
-  final ManModel? man;
+  final Man? man;
 
   @override
   String toString() {
@@ -170,10 +170,10 @@ class _$ManInfoViewModelStateLoadingImpl extends _ManInfoViewModelStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ManModel? man) loading,
+    required TResult Function(Man? man) loading,
     required TResult Function() idle,
-    required TResult Function(ManModel? man, Object? error) error,
-    required TResult Function(ManModel man) success,
+    required TResult Function(Man? man, Object? error) error,
+    required TResult Function(Man man) success,
   }) {
     return loading(man);
   }
@@ -181,10 +181,10 @@ class _$ManInfoViewModelStateLoadingImpl extends _ManInfoViewModelStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ManModel? man)? loading,
+    TResult? Function(Man? man)? loading,
     TResult? Function()? idle,
-    TResult? Function(ManModel? man, Object? error)? error,
-    TResult? Function(ManModel man)? success,
+    TResult? Function(Man? man, Object? error)? error,
+    TResult? Function(Man man)? success,
   }) {
     return loading?.call(man);
   }
@@ -192,10 +192,10 @@ class _$ManInfoViewModelStateLoadingImpl extends _ManInfoViewModelStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ManModel? man)? loading,
+    TResult Function(Man? man)? loading,
     TResult Function()? idle,
-    TResult Function(ManModel? man, Object? error)? error,
-    TResult Function(ManModel man)? success,
+    TResult Function(Man? man, Object? error)? error,
+    TResult Function(Man man)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -243,11 +243,11 @@ class _$ManInfoViewModelStateLoadingImpl extends _ManInfoViewModelStateLoading {
 }
 
 abstract class _ManInfoViewModelStateLoading extends ManInfoViewModelState {
-  const factory _ManInfoViewModelStateLoading({required final ManModel? man}) =
+  const factory _ManInfoViewModelStateLoading({required final Man? man}) =
       _$ManInfoViewModelStateLoadingImpl;
   const _ManInfoViewModelStateLoading._() : super._();
 
-  ManModel? get man;
+  Man? get man;
   @JsonKey(ignore: true)
   _$$ManInfoViewModelStateLoadingImplCopyWith<
           _$ManInfoViewModelStateLoadingImpl>
@@ -296,10 +296,10 @@ class _$ManInfoViewModelStateIdleImpl extends _ManInfoViewModelStateIdle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ManModel? man) loading,
+    required TResult Function(Man? man) loading,
     required TResult Function() idle,
-    required TResult Function(ManModel? man, Object? error) error,
-    required TResult Function(ManModel man) success,
+    required TResult Function(Man? man, Object? error) error,
+    required TResult Function(Man man) success,
   }) {
     return idle();
   }
@@ -307,10 +307,10 @@ class _$ManInfoViewModelStateIdleImpl extends _ManInfoViewModelStateIdle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ManModel? man)? loading,
+    TResult? Function(Man? man)? loading,
     TResult? Function()? idle,
-    TResult? Function(ManModel? man, Object? error)? error,
-    TResult? Function(ManModel man)? success,
+    TResult? Function(Man? man, Object? error)? error,
+    TResult? Function(Man man)? success,
   }) {
     return idle?.call();
   }
@@ -318,10 +318,10 @@ class _$ManInfoViewModelStateIdleImpl extends _ManInfoViewModelStateIdle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ManModel? man)? loading,
+    TResult Function(Man? man)? loading,
     TResult Function()? idle,
-    TResult Function(ManModel? man, Object? error)? error,
-    TResult Function(ManModel man)? success,
+    TResult Function(Man? man, Object? error)? error,
+    TResult Function(Man man)? success,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -380,9 +380,9 @@ abstract class _$$ManInfoViewModelStateErrorImplCopyWith<$Res> {
           $Res Function(_$ManInfoViewModelStateErrorImpl) then) =
       __$$ManInfoViewModelStateErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ManModel? man, Object? error});
+  $Res call({Man? man, Object? error});
 
-  $ManModelCopyWith<$Res>? get man;
+  $ManCopyWith<$Res>? get man;
 }
 
 /// @nodoc
@@ -405,19 +405,19 @@ class __$$ManInfoViewModelStateErrorImplCopyWithImpl<$Res>
       man: freezed == man
           ? _value.man
           : man // ignore: cast_nullable_to_non_nullable
-              as ManModel?,
+              as Man?,
       error: freezed == error ? _value.error : error,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ManModelCopyWith<$Res>? get man {
+  $ManCopyWith<$Res>? get man {
     if (_value.man == null) {
       return null;
     }
 
-    return $ManModelCopyWith<$Res>(_value.man!, (value) {
+    return $ManCopyWith<$Res>(_value.man!, (value) {
       return _then(_value.copyWith(man: value));
     });
   }
@@ -431,7 +431,7 @@ class _$ManInfoViewModelStateErrorImpl extends _ManInfoViewModelStateError {
       : super._();
 
   @override
-  final ManModel? man;
+  final Man? man;
   @override
   final Object? error;
 
@@ -463,10 +463,10 @@ class _$ManInfoViewModelStateErrorImpl extends _ManInfoViewModelStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ManModel? man) loading,
+    required TResult Function(Man? man) loading,
     required TResult Function() idle,
-    required TResult Function(ManModel? man, Object? error) error,
-    required TResult Function(ManModel man) success,
+    required TResult Function(Man? man, Object? error) error,
+    required TResult Function(Man man) success,
   }) {
     return error(man, this.error);
   }
@@ -474,10 +474,10 @@ class _$ManInfoViewModelStateErrorImpl extends _ManInfoViewModelStateError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ManModel? man)? loading,
+    TResult? Function(Man? man)? loading,
     TResult? Function()? idle,
-    TResult? Function(ManModel? man, Object? error)? error,
-    TResult? Function(ManModel man)? success,
+    TResult? Function(Man? man, Object? error)? error,
+    TResult? Function(Man man)? success,
   }) {
     return error?.call(man, this.error);
   }
@@ -485,10 +485,10 @@ class _$ManInfoViewModelStateErrorImpl extends _ManInfoViewModelStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ManModel? man)? loading,
+    TResult Function(Man? man)? loading,
     TResult Function()? idle,
-    TResult Function(ManModel? man, Object? error)? error,
-    TResult Function(ManModel man)? success,
+    TResult Function(Man? man, Object? error)? error,
+    TResult Function(Man man)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -537,11 +537,11 @@ class _$ManInfoViewModelStateErrorImpl extends _ManInfoViewModelStateError {
 
 abstract class _ManInfoViewModelStateError extends ManInfoViewModelState {
   const factory _ManInfoViewModelStateError(
-      {required final ManModel? man,
+      {required final Man? man,
       required final Object? error}) = _$ManInfoViewModelStateErrorImpl;
   const _ManInfoViewModelStateError._() : super._();
 
-  ManModel? get man;
+  Man? get man;
   Object? get error;
   @JsonKey(ignore: true)
   _$$ManInfoViewModelStateErrorImplCopyWith<_$ManInfoViewModelStateErrorImpl>
@@ -555,9 +555,9 @@ abstract class _$$ManInfoViewModelStateSuccessImplCopyWith<$Res> {
           $Res Function(_$ManInfoViewModelStateSuccessImpl) then) =
       __$$ManInfoViewModelStateSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ManModel man});
+  $Res call({Man man});
 
-  $ManModelCopyWith<$Res> get man;
+  $ManCopyWith<$Res> get man;
 }
 
 /// @nodoc
@@ -579,14 +579,14 @@ class __$$ManInfoViewModelStateSuccessImplCopyWithImpl<$Res>
       man: null == man
           ? _value.man
           : man // ignore: cast_nullable_to_non_nullable
-              as ManModel,
+              as Man,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ManModelCopyWith<$Res> get man {
-    return $ManModelCopyWith<$Res>(_value.man, (value) {
+  $ManCopyWith<$Res> get man {
+    return $ManCopyWith<$Res>(_value.man, (value) {
       return _then(_value.copyWith(man: value));
     });
   }
@@ -598,7 +598,7 @@ class _$ManInfoViewModelStateSuccessImpl extends _ManInfoViewModelStateSuccess {
   const _$ManInfoViewModelStateSuccessImpl({required this.man}) : super._();
 
   @override
-  final ManModel man;
+  final Man man;
 
   @override
   String toString() {
@@ -627,10 +627,10 @@ class _$ManInfoViewModelStateSuccessImpl extends _ManInfoViewModelStateSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ManModel? man) loading,
+    required TResult Function(Man? man) loading,
     required TResult Function() idle,
-    required TResult Function(ManModel? man, Object? error) error,
-    required TResult Function(ManModel man) success,
+    required TResult Function(Man? man, Object? error) error,
+    required TResult Function(Man man) success,
   }) {
     return success(man);
   }
@@ -638,10 +638,10 @@ class _$ManInfoViewModelStateSuccessImpl extends _ManInfoViewModelStateSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ManModel? man)? loading,
+    TResult? Function(Man? man)? loading,
     TResult? Function()? idle,
-    TResult? Function(ManModel? man, Object? error)? error,
-    TResult? Function(ManModel man)? success,
+    TResult? Function(Man? man, Object? error)? error,
+    TResult? Function(Man man)? success,
   }) {
     return success?.call(man);
   }
@@ -649,10 +649,10 @@ class _$ManInfoViewModelStateSuccessImpl extends _ManInfoViewModelStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ManModel? man)? loading,
+    TResult Function(Man? man)? loading,
     TResult Function()? idle,
-    TResult Function(ManModel? man, Object? error)? error,
-    TResult Function(ManModel man)? success,
+    TResult Function(Man? man, Object? error)? error,
+    TResult Function(Man man)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -700,11 +700,11 @@ class _$ManInfoViewModelStateSuccessImpl extends _ManInfoViewModelStateSuccess {
 }
 
 abstract class _ManInfoViewModelStateSuccess extends ManInfoViewModelState {
-  const factory _ManInfoViewModelStateSuccess({required final ManModel man}) =
+  const factory _ManInfoViewModelStateSuccess({required final Man man}) =
       _$ManInfoViewModelStateSuccessImpl;
   const _ManInfoViewModelStateSuccess._() : super._();
 
-  ManModel get man;
+  Man get man;
   @JsonKey(ignore: true)
   _$$ManInfoViewModelStateSuccessImplCopyWith<
           _$ManInfoViewModelStateSuccessImpl>

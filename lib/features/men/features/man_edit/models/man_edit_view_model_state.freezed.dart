@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ManEditViewModelState {
-  ManModel? get initialModel => throw _privateConstructorUsedError;
+  Man? get initialModel => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<GoalModel> get goals => throw _privateConstructorUsedError;
+  List<Goal> get goals => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ManEditViewModelStateCopyWith<ManEditViewModelState> get copyWith =>
@@ -33,12 +33,12 @@ abstract class $ManEditViewModelStateCopyWith<$Res> {
       _$ManEditViewModelStateCopyWithImpl<$Res, ManEditViewModelState>;
   @useResult
   $Res call(
-      {ManModel? initialModel,
+      {Man? initialModel,
       String fullname,
       String description,
-      List<GoalModel> goals});
+      List<Goal> goals});
 
-  $ManModelCopyWith<$Res>? get initialModel;
+  $ManCopyWith<$Res>? get initialModel;
 }
 
 /// @nodoc
@@ -64,7 +64,7 @@ class _$ManEditViewModelStateCopyWithImpl<$Res,
       initialModel: freezed == initialModel
           ? _value.initialModel
           : initialModel // ignore: cast_nullable_to_non_nullable
-              as ManModel?,
+              as Man?,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -76,18 +76,18 @@ class _$ManEditViewModelStateCopyWithImpl<$Res,
       goals: null == goals
           ? _value.goals
           : goals // ignore: cast_nullable_to_non_nullable
-              as List<GoalModel>,
+              as List<Goal>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ManModelCopyWith<$Res>? get initialModel {
+  $ManCopyWith<$Res>? get initialModel {
     if (_value.initialModel == null) {
       return null;
     }
 
-    return $ManModelCopyWith<$Res>(_value.initialModel!, (value) {
+    return $ManCopyWith<$Res>(_value.initialModel!, (value) {
       return _then(_value.copyWith(initialModel: value) as $Val);
     });
   }
@@ -103,13 +103,13 @@ abstract class _$$ManEditViewModelStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {ManModel? initialModel,
+      {Man? initialModel,
       String fullname,
       String description,
-      List<GoalModel> goals});
+      List<Goal> goals});
 
   @override
-  $ManModelCopyWith<$Res>? get initialModel;
+  $ManCopyWith<$Res>? get initialModel;
 }
 
 /// @nodoc
@@ -133,7 +133,7 @@ class __$$ManEditViewModelStateImplCopyWithImpl<$Res>
       initialModel: freezed == initialModel
           ? _value.initialModel
           : initialModel // ignore: cast_nullable_to_non_nullable
-              as ManModel?,
+              as Man?,
       fullname: null == fullname
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ class __$$ManEditViewModelStateImplCopyWithImpl<$Res>
       goals: null == goals
           ? _value._goals
           : goals // ignore: cast_nullable_to_non_nullable
-              as List<GoalModel>,
+              as List<Goal>,
     ));
   }
 }
@@ -157,18 +157,18 @@ class _$ManEditViewModelStateImpl implements _ManEditViewModelState {
       {required this.initialModel,
       required this.fullname,
       required this.description,
-      required final List<GoalModel> goals})
+      required final List<Goal> goals})
       : _goals = goals;
 
   @override
-  final ManModel? initialModel;
+  final Man? initialModel;
   @override
   final String fullname;
   @override
   final String description;
-  final List<GoalModel> _goals;
+  final List<Goal> _goals;
   @override
-  List<GoalModel> get goals {
+  List<Goal> get goals {
     if (_goals is EqualUnmodifiableListView) return _goals;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_goals);
@@ -207,19 +207,19 @@ class _$ManEditViewModelStateImpl implements _ManEditViewModelState {
 
 abstract class _ManEditViewModelState implements ManEditViewModelState {
   const factory _ManEditViewModelState(
-      {required final ManModel? initialModel,
+      {required final Man? initialModel,
       required final String fullname,
       required final String description,
-      required final List<GoalModel> goals}) = _$ManEditViewModelStateImpl;
+      required final List<Goal> goals}) = _$ManEditViewModelStateImpl;
 
   @override
-  ManModel? get initialModel;
+  Man? get initialModel;
   @override
   String get fullname;
   @override
   String get description;
   @override
-  List<GoalModel> get goals;
+  List<Goal> get goals;
   @override
   @JsonKey(ignore: true)
   _$$ManEditViewModelStateImplCopyWith<_$ManEditViewModelStateImpl>

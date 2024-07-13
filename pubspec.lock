@@ -272,6 +272,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.2.0"
+  goal_domain:
+    dependency: "direct main"
+    description:
+      path: "packages/goal/goal_domain"
+      relative: true
+    source: path
+    version: "1.0.0"
   graphs:
     dependency: transitive
     description:

@@ -47,7 +47,7 @@ final router = GoRouter(
           name: ManInfoPage.routeName,
           builder: (final context, final state) {
             final id = state.pathParameters['id'];
-            final manModel = state.extra as ManModel?;
+            final manModel = state.extra as Man?;
             return ManInfoScope(
               child: ManBuilder(
                 id: id!,
@@ -64,7 +64,7 @@ final router = GoRouter(
               name: ManEditPage.routeName,
               builder: (final context, final state) {
                 final id = state.pathParameters['id'];
-                final manModel = state.extra as ManModel?;
+                final manModel = state.extra as Man?;
 
                 return ManInfoScope(
                   child: ManBuilder(

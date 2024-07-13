@@ -8,9 +8,9 @@ part 'man_edit_view_model_state.freezed.dart';
 @freezed
 class ManEditViewModelState with _$ManEditViewModelState {
   const factory ManEditViewModelState({
-    required final ManModel? initialModel,
+    required final Man? initialModel,
     required final String fullname,
     required final String description,
-    required final List<GoalModel> goals,
+    required final List<Goal> goals,
   }) = _ManEditViewModelState;
 }

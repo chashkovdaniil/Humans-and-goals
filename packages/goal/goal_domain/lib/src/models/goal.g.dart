@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'goal_model.dart';
+part of 'goal.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GoalModelImpl _$$GoalModelImplFromJson(Map<String, dynamic> json) =>
-    _$GoalModelImpl(
+_$GoalImpl _$$GoalImplFromJson(Map<String, dynamic> json) => _$GoalImpl(
       id: json['id'] as String,
       men: (json['men'] as List<dynamic>)
-          .map((e) => ManModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => Man.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$GoalModelImplToJson(_$GoalModelImpl instance) =>
+Map<String, dynamic> _$$GoalImplToJson(_$GoalImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'men': instance.men,
