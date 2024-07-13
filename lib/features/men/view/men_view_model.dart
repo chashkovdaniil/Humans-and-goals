@@ -2,8 +2,7 @@ import 'dart:math' as math;
 
 import 'package:state_notifier/state_notifier.dart';
 
-import '../domain/interactor/man_interactor.dart';
-import '../domain/models/man_model.dart';
+import '../men.dart';
 import 'models/men_view_model_state.dart';
 
 class MenViewModel extends StateNotifier<MenViewModelState> {

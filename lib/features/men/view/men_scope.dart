@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
-import '../domain/data/man_repository.dart';
-import '../domain/interactor/man_interactor.dart';
+import '../data/man_repository_impl.dart';
+import '../men.dart';
 import 'men_view_model.dart';
 
 class MenScope extends StatelessWidget {
@@ -35,8 +35,8 @@ class MenScope extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final manRepository = ManRepository();
-    final manInteractor = ManInteractor(manRepository: manRepository);
+    final manRepository = ManRepositoryImpl();
+    final manInteractor = ManInteractor(repository: manRepository);
     final menPageViewModel = MenViewModel(manInteractor);
     menPageViewModel.init();
 

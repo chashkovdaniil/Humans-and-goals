@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-import '../../domain/interactor/man_interactor.dart';
 import '../../men.dart';
 import 'models/man_edit_view_model_state.dart';
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../domain/models/man_model.dart';
-import '../../../view/men_scope.dart';
+import '../../../men.dart';
 import '../../man_info/man_info_page.dart';
 
 class ManCardTile extends StatelessWidget {

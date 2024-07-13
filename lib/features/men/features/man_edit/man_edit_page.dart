@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/widgets.dart';
-import '../../domain/models/man_model.dart';
+import '../../men.dart';
 import '../man_info/models/man_info_view_model_state.dart';
 import 'man_edit_scope.dart';
 import 'man_edit_view_model.dart';

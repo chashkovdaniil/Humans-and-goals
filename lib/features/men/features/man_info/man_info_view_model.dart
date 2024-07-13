@@ -1,6 +1,5 @@
 import 'package:state_notifier/state_notifier.dart';
 
-import '../../domain/interactor/man_interactor.dart';
 import '../../men.dart';
 import 'models/man_info_view_model_state.dart';
 

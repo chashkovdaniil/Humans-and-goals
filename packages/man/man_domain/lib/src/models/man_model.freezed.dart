@@ -21,11 +21,15 @@ ManModel _$ManModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ManModel {
   String get id => throw _privateConstructorUsedError;
+
   String get fullname => throw _privateConstructorUsedError;
+
   String get description => throw _privateConstructorUsedError;
+
   List<GoalModel> get goals => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $ManModelCopyWith<ManModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,6 +39,7 @@ mixin _$ManModel {
 abstract class $ManModelCopyWith<$Res> {
   factory $ManModelCopyWith(ManModel value, $Res Function(ManModel) then) =
       _$ManModelCopyWithImpl<$Res, ManModel>;
+
   @useResult
   $Res call(
       {String id, String fullname, String description, List<GoalModel> goals});
@@ -47,6 +52,7 @@ class _$ManModelCopyWithImpl<$Res, $Val extends ManModel>
 
   // ignore: unused_field
   final $Val _value;
+
   // ignore: unused_field
   final $Res Function($Val) _then;
 
@@ -85,6 +91,7 @@ abstract class _$$ManModelImplCopyWith<$Res>
   factory _$$ManModelImplCopyWith(
           _$ManModelImpl value, $Res Function(_$ManModelImpl) then) =
       __$$ManModelImplCopyWithImpl<$Res>;
+
   @override
   @useResult
   $Res call(
@@ -148,6 +155,7 @@ class _$ManModelImpl implements _ManModel {
   @override
   final String description;
   final List<GoalModel> _goals;
+
   @override
   List<GoalModel> get goals {
     if (_goals is EqualUnmodifiableListView) return _goals;
@@ -204,12 +212,16 @@ abstract class _ManModel implements ManModel {
 
   @override
   String get id;
+
   @override
   String get fullname;
+
   @override
   String get description;
+
   @override
   List<GoalModel> get goals;
+
   @override
   @JsonKey(ignore: true)
   _$$ManModelImplCopyWith<_$ManModelImpl> get copyWith =>

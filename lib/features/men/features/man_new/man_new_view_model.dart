@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../domain/interactor/man_interactor.dart';
 import '../../men.dart';
 import 'models/man_new_view_model_state.dart';
 

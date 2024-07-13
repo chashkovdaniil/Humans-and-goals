@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../domain/models/man_model.dart';
-import 'men_scope.dart';
+import '../men.dart';
 
 class MenBuilder extends StatelessWidget {
   final Widget Function(BuildContext, List<ManModel>) builder;
