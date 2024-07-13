@@ -17,6 +17,8 @@ dependencies:
   uuid: ^4.4.0
   flutter_state_notifier: ^1.0.0
   provider: ^6.1.2
+  man_domain:
+    path: 'packages/man/man_domain'
 
 dev_dependencies:
   flutter_test:

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/interactor/man_interactor.dart';
 import '../../men.dart';
 import 'man_new_view_model.dart';
 

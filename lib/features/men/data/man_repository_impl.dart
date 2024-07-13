@@ -1,5 +1,4 @@
-import '../models/man_model.dart';
-import 'man_repository.dart';
+import '../men.dart';
 
 class ManRepositoryImpl implements ManRepository {
   final list = <ManModel>[
