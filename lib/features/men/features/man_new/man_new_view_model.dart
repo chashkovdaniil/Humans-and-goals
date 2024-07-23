@@ -22,8 +22,11 @@ class ManNewViewModel extends StateNotifier<ManNewViewModelState> {
       fullname: state.fullname,
       description: '',
       goals: [],
+      link: '',
+      phone: '',
     );
     await _manInteractor.addMan(man);
+
     if (context.mounted) {
       context.dispatchNotification(UpdateMenNotification());
     }

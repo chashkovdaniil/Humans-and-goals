@@ -33,6 +33,8 @@ class MenViewModel extends StateNotifier<MenViewModelState> {
           fullname: 'ff',
           description: '',
           goals: [],
+          link: '',
+          phone: '',
         ),
       ),
     ]);

@@ -7,7 +7,9 @@ class ManRepositoryImpl implements ManRepository {
       fullname: 'Empty',
       description: 'as',
       goals: [],
-    )
+      link: '',
+      phone: '',
+    ),
   ];
 
   @override
