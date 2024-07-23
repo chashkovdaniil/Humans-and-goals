@@ -1,4 +1,5 @@
 import 'package:man_domain/man_domain.dart';
+import 'package:man_domain/src/interactor/man_interactor.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
@@ -34,7 +35,9 @@ const validMan = Man(
 void main() {
   group('Errors, exceptions, asserts', () {
     final manRepository = MockManRepository();
-    final manInteractor = ManInteractor(repository: (manRepository));
+    final manInteractor = ManInteractorImpl(
+      repository: (manRepository),
+    );
 
     setUp(() {});
 
