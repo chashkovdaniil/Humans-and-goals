@@ -34,10 +34,10 @@ abstract interface class ManInteractor {
   });
 }
 
-/// В этом классе находится вся бизнес логика, обработка данных
+/// В этом классе находится вся бизнес логика, обработка данных.
 /// Тут происходит взаимодействие с бд.
 ///
-/// Весь контракт сохранения данных и прочее находится за пределами бизнес-логики
+/// Весь контракт сохранения данных и прочее находится за пределами бизнес-логики.
 final class ManInteractorImpl implements ManInteractor {
   /// Репозиторий для получения данных о пользователях
   final ManRepository _repository;
@@ -49,11 +49,6 @@ final class ManInteractorImpl implements ManInteractor {
   })  : _repository = repository,
         _validator = validator;
 
-  /// Получает список людей.
-  ///
-  /// [count] - Количество людей
-  ///
-  /// [page] - Номер страницы
   @useResult
   Future<List<Man>> getMen(final int count, final int page) async {
     _validator.checkPageNumber(page);
@@ -62,7 +57,6 @@ final class ManInteractorImpl implements ManInteractor {
     return await _repository.getMen(count, page);
   }
 
-  /// Получает человека по [id]
   @useResult
   Future<Man> getMan(final String id) async {
     _validator.checkId(id);
@@ -70,27 +64,23 @@ final class ManInteractorImpl implements ManInteractor {
     return await _repository.getMan(id);
   }
 
-  /// Добавляет человека
   Future<void> addMan(final Man man) async {
     _validator.checkMan(man);
 
     _repository.addMan(man);
   }
 
-  /// Сохраняет человека
   Future<void> saveMan(final Man man) async {
     _validator.checkMan(man);
 
     _repository.saveMan(man);
   }
 
-  /// Удаляет человека
   Future<void> removeMan(final Man man) async {
     _validator.checkMan(man);
     _repository.removeMan(man);
   }
 
-  /// Позволяет получить друзей указанного человека
   @useResult
   Future<Friends> getFriends({
     required final Man man,
