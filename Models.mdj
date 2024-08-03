@@ -22625,6 +22625,28 @@
 													},
 													"multiplicity": "0..*",
 													"direction": "return"
+												},
+												{
+													"_type": "UMLParameter",
+													"_id": "AAAAAAGQ4TO0o2cmlW0=",
+													"_parent": {
+														"$ref": "AAAAAAGQ4RcisEjzlUc="
+													},
+													"name": "page",
+													"type": {
+														"$ref": "AAAAAAGQrTEhW5/Z5fo="
+													}
+												},
+												{
+													"_type": "UMLParameter",
+													"_id": "AAAAAAGQ4TPjMmdPIyI=",
+													"_parent": {
+														"$ref": "AAAAAAGQ4RcisEjzlUc="
+													},
+													"name": "count",
+													"type": {
+														"$ref": "AAAAAAGQrTEhW5/Z5fo="
+													}
 												}
 											]
 										}
